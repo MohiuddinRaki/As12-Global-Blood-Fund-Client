@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import SocialLogin from "../socialLogin/SocialLogin";
 import UseDistrict from "../../../hooks/UseDistrict";
 import UseUpazila from "../../../hooks/UseUpazila";
+import { Helmet } from "react-helmet-async";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -19,7 +20,7 @@ const Register = () => {
     handleSubmit,
     reset,
     formState: { errors },
-    getValues
+    getValues,
   } = useForm();
 
   const { createUser, handleUpdateProfile } = UseAuth();
@@ -53,11 +54,10 @@ const Register = () => {
               upazila,
               blodGroup,
               image,
-              role: "donor"
+              role: "donor",
             };
             console.log(userInfo);
-            axiosPublic.post("/donationUsers", userInfo)
-            .then((res) => {
+            axiosPublic.post("/donationUsers", userInfo).then((res) => {
               if (res.data.insertedId) {
                 reset();
                 Swal.fire({
@@ -80,11 +80,9 @@ const Register = () => {
 
   return (
     <>
-      {/* <Helmet>
-        <title>Bistro Boss | SignUp</title>
-      </Helmet> */}
-      {/* <h2>{donatorDistrict.length}</h2>
-      <h2>{donatorUpazila.length}</h2> */}
+      <Helmet>
+        <title>Global Blood Fund || register</title>
+      </Helmet>
       <div className="bg-base-200 pt-16">
         <h1 className="text-5xl text-center font-bold">Sign Up Now!</h1>
         <div className="hero min-h-screen">
@@ -256,10 +254,14 @@ const Register = () => {
                     className="input input-bordered"
                   />
                   {errors.confirmPassword?.type === "required" && (
-                    <span className="text-red-500">Confirm Password is required</span>
+                    <span className="text-red-500">
+                      Confirm Password is required
+                    </span>
                   )}
                   {errors.confirmPassword?.type === "matchesPassword" && (
-                    <span className="text-red-500">Password and Confirm Password dont match</span>
+                    <span className="text-red-500">
+                      Password and Confirm Password dont match
+                    </span>
                   )}
                 </div>
               </div>

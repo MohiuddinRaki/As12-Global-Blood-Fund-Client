@@ -7,8 +7,20 @@ const Navbar = () => {
 
   const navLinks = (
     <>
-      <li className="text-lg font-medium text-teal-500 lg:text-white">
+      <li className="text-lg font-medium text-teal-500 lg:text-[#ed1b2f]">
         <NavLink to="/">Home</NavLink>
+      </li>
+      <li className="text-lg font-medium text-teal-500 lg:text-[#ed1b2f]">
+        <NavLink to="/donationRequest">D.Request</NavLink>
+      </li>
+      <li className="text-lg font-medium text-teal-500 lg:text-[#ed1b2f]">
+        <NavLink to="/donationBlogs">D.Blogs</NavLink>
+      </li>
+      <li className="text-lg font-medium text-teal-500 lg:text-[#ed1b2f]">
+        <NavLink to="/dashboard">Dashboard</NavLink>
+      </li>
+      <li className="text-lg font-medium text-teal-500 lg:text-[#ed1b2f]">
+        <NavLink to="/funding">Fund</NavLink>
       </li>
       {/* <li className="text-lg font-medium text-teal-500 lg:text-white">
         <NavLink to="/addBlog">Add Blog</NavLink>
@@ -22,25 +34,25 @@ const Navbar = () => {
       {/* <li className="text-lg font-medium text-teal-500 lg:text-white">
         <NavLink to={`/wishlist/${user?.email}`}>Wishlist</NavLink>
       </li> */}
-      <li className="text-lg font-medium text-teal-500 lg:text-white">
+      <li className="text-lg font-medium text-teal-500 lg:text-[#ed1b2f]">
         <NavLink to="/login">Login</NavLink>
       </li>
-      <li className="text-lg font-medium text-teal-500 lg:text-white">
+      <li className="text-lg font-medium text-teal-500 lg:text-[#ed1b2f]">
         <NavLink to="/register">Register</NavLink>
       </li>
     </>
   );
 
   return (
-    <nav className="bg-gray-500">
-      <div className="navbar container mx-auto mb-10 py-10">
+    <nav className="bg-[#701c45] navbar fixed z-10">
+      <div className="container mx-auto navbar py-5">
         <div className="navbar-start">
           <div className="dropdown dropdown-start">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
               <div className="items-center mr-2">
                 <img
                   className="rounded-full max-w-16 h-10"
-                  src="https://i.ibb.co/rd5gtSL/blog-world-d-illustration-31262699.webp"
+                  src="https://i.ibb.co/VH4RCT0/Document.jpg"
                 />
               </div>
             </label>
@@ -54,9 +66,9 @@ const Navbar = () => {
 
           <Link
             to="/"
-            className="btn btn-ghost normal-case text-teal-500 font-bold text-lg md:text-4xl pl-16 md:pl-44 lg:pl-0"
+            className="btn btn-ghost normal-case text-white font-bold text-lg md:text-4xl pl-16 md:pl-44 lg:pl-0"
           >
-            Home Of Blogs
+            G.Blood Fund
           </Link>
         </div>
         <div className="mr-5 xl:navbar-center hidden lg:flex">
