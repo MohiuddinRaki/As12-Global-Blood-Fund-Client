@@ -48,7 +48,7 @@ const DonorUpdateForm = () => {
                   image,
                   role: "donor",
                 };
-      const meniRes = await axiosPublic.patch(`/donationUsers/${singleUserInfo?._id}`, userInfo);
+      const meniRes = await axiosPublic.patch(`/dashboard/donationUsers/${singleUserInfo?._id}`, userInfo);
       console.log(meniRes.data);
       if (meniRes.data.modifiedCount > 0) {
         reset();

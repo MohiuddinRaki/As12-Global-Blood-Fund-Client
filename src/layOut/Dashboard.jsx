@@ -46,10 +46,7 @@ const Dashboard = () => {
           <ul className="menu p-4">
             <>
               <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
-                <NavLink to="/dashboard">
-                  {/* <FaHome></FaHome> */}
-                 Dashboard
-                </NavLink>
+                <NavLink to="/dashboard">Dashboard</NavLink>
               </li>
               <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
                 <NavLink to="/dashboard/profile">
@@ -80,7 +77,7 @@ const Dashboard = () => {
               </NavLink>
             </li>
             <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
-              <NavLink to="/contact">
+              <NavLink to="/dashboard/contact">
                 {/* <FaSearch></FaSearch> */}
                 Contact
               </NavLink>
@@ -88,7 +85,7 @@ const Dashboard = () => {
           </ul>
         </div>
         <div className="flex-1 p-8">
-          <Outlet></Outlet>
+        <Outlet></Outlet>
         </div>
       </div>
     </>

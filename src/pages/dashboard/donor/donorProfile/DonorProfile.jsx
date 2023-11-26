@@ -20,7 +20,7 @@ const DonorProfile = () => {
                     <h1 className="text-red-500 font-medium text-xl border-b-4"><span className="text-white">Blod Group:</span> {singleUserInfo?.blodGroup}</h1>
                     <h1 className="text-red-500 font-medium text-xl border-b-4"><span className="text-white">Upazila:</span> {singleUserInfo?.upazila}</h1>
                     <h1 className="text-red-500 font-medium text-xl border-b-4"><span className="text-white">District:</span> {singleUserInfo?.district}</h1>
-                   <Link to={`/donationUsers/${singleUserInfo?._id}`}> <button className="w-full btn btn-success mt-5">Update</button></Link>
+                   <Link to={`/dashboard/donationUsers/${singleUserInfo?._id}`}> <button className="w-full btn btn-success mt-5">Update</button></Link>
                 </div>
              </div>
             </div>

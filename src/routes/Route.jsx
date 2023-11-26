@@ -15,6 +15,7 @@ import CreateRequest from "../pages/dashboard/donor/createRequest/CreateRequest"
 import MyRequest from "../pages/dashboard/donor/myRequest/MyRequest";
 import DonorContact from "../pages/dashboard/donor/donorContact/DonorContact";
 import DonorUpdateForm from "../component/donorUpdate/DonorUpdateForm";
+import DashboardDonor from "../pages/dashboard/donor/dashboardDonor/DashboardDonor";
 
 export const router = createBrowserRouter([
   {
@@ -53,15 +54,6 @@ export const router = createBrowserRouter([
         path: "contactUsF",
         element: <ContactUsF></ContactUsF>,
       },
-      {
-        path: 'contact',
-        element: <DonorContact></DonorContact>
-      },
-      {
-        path: "donationUsers/:id",
-        element: <DonorUpdateForm></DonorUpdateForm>,
-        loader: ({params}) => fetch(`http://localhost:5000/donationUsers/${params.id}`)
-      }
     ],
   },
   {
@@ -74,6 +66,10 @@ export const router = createBrowserRouter([
     children: [
       // for donor Route:
       {
+        index: true,
+        element: <DashboardDonor></DashboardDonor>
+      },
+      {
         path: "profile",
         element: <DonorProfile></DonorProfile>
       },
@@ -85,6 +81,15 @@ export const router = createBrowserRouter([
         path: 'myRequest',
         element: <MyRequest></MyRequest>
       },
+      {
+        path: 'contact',
+        element: <DonorContact></DonorContact>
+      },
+      {
+        path: "donationUsers/:id",
+        element: <DonorUpdateForm></DonorUpdateForm>,
+        loader: ({params}) => fetch(`http://localhost:5000/dashboard/donationUsers/${params.id}`)
+      }
 
       // // admin route:
       // {
