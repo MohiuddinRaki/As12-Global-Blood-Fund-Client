@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
-// import "./navbar.css";
 import UseAuth from "../../../hooks/UseAuth";
+import "./navbar.css";
 
 const Navbar = () => {
   const { user, logOutUser } = UseAuth();
@@ -44,8 +44,8 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="bg-[#701c45] navbar fixed z-10">
-      <div className="container mx-auto navbar py-5">
+    <nav className="bg-[#701c45]">
+      <div className="container mx-auto navbar pt-5">
         <div className="navbar-start">
           <div className="dropdown dropdown-start">
             <label tabIndex={0} className="btn btn-ghost btn-circle">

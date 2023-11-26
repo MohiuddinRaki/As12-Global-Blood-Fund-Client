@@ -10,7 +10,11 @@ import Dashboard from "../layOut/Dashboard";
 import Funding from "../pages/shared/funding/Funding";
 import PrivacyPolicy from "../pages/shared/privacyPolicy/PrivacyPolicy";
 import ContactUsF from "../pages/shared/contactUsF/ContactUsF";
-
+import DonorProfile from "../pages/dashboard/donor/donorProfile/DonorProfile";
+import CreateRequest from "../pages/dashboard/donor/createRequest/CreateRequest";
+import MyRequest from "../pages/dashboard/donor/myRequest/MyRequest";
+import DonorContact from "../pages/dashboard/donor/donorContact/DonorContact";
+import DonorUpdateForm from "../component/donorUpdate/DonorUpdateForm";
 
 export const router = createBrowserRouter([
   {
@@ -49,6 +53,15 @@ export const router = createBrowserRouter([
         path: "contactUsF",
         element: <ContactUsF></ContactUsF>,
       },
+      {
+        path: 'contact',
+        element: <DonorContact></DonorContact>
+      },
+      {
+        path: "donationUsers/:id",
+        element: <DonorUpdateForm></DonorUpdateForm>,
+        loader: ({params}) => fetch(`http://localhost:5000/donationUsers/${params.id}`)
+      }
     ],
   },
   {
@@ -59,18 +72,19 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // for donor Route:
       {
-        // path: "cart",
-        // element: <Cart></Cart>,
+        path: "profile",
+        element: <DonorProfile></DonorProfile>
       },
-      // {
-      //   path: "payment",
-      //   element: <Payment></Payment>,
-      // },
-      // {
-      //   path: 'paymentHistory',
-      //   element: <PaymentHistory></PaymentHistory>
-      // },
+      {
+        path: "createRequest",
+        element: <CreateRequest></CreateRequest>
+      },
+      {
+        path: 'myRequest',
+        element: <MyRequest></MyRequest>
+      },
 
       // // admin route:
       // {

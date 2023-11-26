@@ -2,7 +2,7 @@ import { Helmet } from "react-helmet-async";
 
 const Funding = () => {
   return (
-    <div>
+    <div className="pt-40">
       <Helmet>
         <title>Global Blood Fund || Funding</title>
       </Helmet>
