@@ -74,7 +74,7 @@ export const router = createBrowserRouter([
         element: <DonorProfile></DonorProfile>
       },
       {
-        path: "createRequest",
+        path: "create-donation-request",
         element: <CreateRequest></CreateRequest>
       },
       {

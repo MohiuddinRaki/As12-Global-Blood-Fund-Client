@@ -55,7 +55,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
-                <NavLink to="/dashboard/createRequest">
+                <NavLink to="/dashboard/create-donation-request">
                   {/* <FaHistory></FaHistory> */}
                   Create Request
                 </NavLink>
