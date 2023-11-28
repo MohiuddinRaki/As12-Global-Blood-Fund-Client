@@ -72,6 +72,12 @@ const Dashboard = () => {
                     All Donation Request
                   </NavLink>
                 </li>
+                <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
+                  <NavLink to="/dashboard/content-management">
+                    {/* <FaAd></FaAd> */}
+                    Content Management
+                  </NavLink>
+                </li>
 
                 {/* shared navlinks */}
                 <div className="divider"></div>

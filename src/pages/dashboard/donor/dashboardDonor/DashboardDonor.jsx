@@ -25,6 +25,7 @@ import { Link } from "react-router-dom";
 const DashboardDonor = () => {
   const [createRequest] = UseDonorRequest();
   const createRequestLength = createRequest.length > 0;
+  const conditionAllRequestButton = createRequest > 3;
   const { user } = UseAuth();
   const specifyUserRequest = createRequest.filter(
     (specifyUser) => specifyUser.requesterEmail === user.email
@@ -125,11 +126,13 @@ const DashboardDonor = () => {
                 ))}
               </TableBody>
             </Table>
-            <Link to="/dashboard/myRequest">
-              <button className="btn btn-info w-full">
-                View My All Request
-              </button>
-            </Link>
+            {conditionAllRequestButton && (
+              <Link to="/dashboard/myRequest">
+                <button className="btn btn-info w-full">
+                  View My All Request
+                </button>
+              </Link>
+            )}
           </TableContainer>
         </div>
       ) : (
