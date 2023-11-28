@@ -1,27 +1,17 @@
-import { Helmet } from "react-helmet-async";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import UseDonorRequest from "../../../../hooks/UseDonorRequest";
-import UseAuth from "../../../../hooks/UseAuth";
-import { TablePagination } from "@mui/material";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
+import UseAuth from "../../../../hooks/UseAuth";
 import UseAxiosSecure from "../../../../hooks/UseAxiosSecure";
+import UseDonorRequest from "../../../../hooks/UseDonorRequest";
+import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material";
+import { Link } from "react-router-dom";
 
-const MyRequest = () => {
+const AllDonationRequest = () => {
   const [createRequest, refetch] = UseDonorRequest();
   const axiosSecure = UseAxiosSecure();
   const createRequestLength = createRequest.length > 0;
   const { user } = UseAuth();
-  const specifyUserRequest = createRequest.filter(
-    (specifyUser) => specifyUser.requesterEmail === user.email
-  );
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -111,7 +101,7 @@ const MyRequest = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {specifyUserRequest
+                {createRequest
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
                     <TableRow
@@ -166,7 +156,7 @@ const MyRequest = () => {
             <TablePagination
               rowsPerPageOptions={[5, 10, 25]}
               component="div"
-              count={specifyUserRequest.length}
+              count={createRequest.length}
               rowsPerPage={rowsPerPage}
               page={page}
               onPageChange={handleChangePage}
@@ -181,4 +171,4 @@ const MyRequest = () => {
   );
 };
 
-export default MyRequest;
+export default AllDonationRequest;

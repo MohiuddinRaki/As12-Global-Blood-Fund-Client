@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import "./dashboard.css";
+import UseAuth from "../hooks/UseAuth";
 // import useAdmin from "../hooks/useAdmin";
 
 // const Dashboard = () => {
@@ -36,7 +37,8 @@ const Dashboard = () => {
   // const [cart] = useCart();
   // // ToDo: get isadmin value from the database:
   // const [isAdmin] = useAdmin();
-  const isAdmin = false;
+  const { logOutUser } = UseAuth();
+  const isAdmin = true;
   const isVolunteer = false;
 
   return (
@@ -53,21 +55,21 @@ const Dashboard = () => {
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
                 <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
-                  <NavLink to="/dashboard/profile">
+                  <NavLink to="/dashboard/adminprofile">
                     {/* <FaHome></FaHome> */}
                     Profile
                   </NavLink>
                 </li>
                 <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
-                  <NavLink to="/dashboard/create-donation-request">
+                  <NavLink to="/dashboard/allUsers">
                     {/* <FaHistory></FaHistory> */}
-                    Create Request
+                    All Users
                   </NavLink>
                 </li>
                 <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
-                  <NavLink to="/dashboard/myRequest">
+                  <NavLink to="/dashboard/all-blood-donation-request">
                     {/* <FaAd></FaAd> */}
-                    My Request
+                    All Donation Request
                   </NavLink>
                 </li>
 
@@ -84,6 +86,16 @@ const Dashboard = () => {
                     {/* <FaSearch></FaSearch> */}
                     Contact
                   </NavLink>
+                </li>
+                <li>
+                  <Link to="/">
+                    <button
+                      className="btn btn-sm btn-ghost text-[#ed1b2f] mt-3 font-medium text-xl"
+                      onClick={logOutUser}
+                    >
+                      Logout
+                    </button>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -131,6 +143,16 @@ const Dashboard = () => {
                     Contact
                   </NavLink>
                 </li>
+                <li>
+                  <Link to="/">
+                    <button
+                      className="btn btn-sm text-[#ed1b2f] mt-3 font-medium text-xl btn-ghost"
+                      onClick={logOutUser}
+                    >
+                      Logout
+                    </button>
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="flex-1 p-8">
@@ -176,6 +198,16 @@ const Dashboard = () => {
                     {/* <FaSearch></FaSearch> */}
                     Contact
                   </NavLink>
+                </li>
+                <li>
+                  <Link to="/">
+                    <button
+                      className="btn btn-sm text-[#ed1b2f] mt-3 font-medium text-xl btn-ghost"
+                      onClick={logOutUser}
+                    >
+                      Logout
+                    </button>
+                  </Link>
                 </li>
               </ul>
             </div>

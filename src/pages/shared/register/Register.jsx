@@ -55,6 +55,7 @@ const Register = () => {
               blodGroup,
               image,
               role: "donor",
+              status: "active",
             };
             console.log(userInfo);
             axiosPublic.post("/donationUsers", userInfo).then((res) => {
