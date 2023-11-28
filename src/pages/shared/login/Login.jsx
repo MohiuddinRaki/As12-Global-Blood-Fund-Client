@@ -3,10 +3,10 @@ import Swal from "sweetalert2";
 //   loadCaptchaEnginge,
 //   LoadCanvasTemplate,
 // } from "react-simple-captcha";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 // import { Helmet } from "react-helmet-async";
 import UseAuth from "../../../hooks/UseAuth";
-import SocialLogin from "../socialLogin/SocialLogin";
+// import SocialLogin from "../socialLogin/SocialLogin";
 import { Helmet } from "react-helmet-async";
 
 const Login = () => {
@@ -49,9 +49,9 @@ const Login = () => {
       <Helmet>
         <title>Global Blood Fund || Login</title>
       </Helmet>
-      <div className="bg-base-200 pt-16">
+      <div className="pt-16">
         <h1 className="text-5xl text-center font-bold">Login Now!</h1>
-        <div className="hero min-h-screen">
+        <div className="hero mt-14">
           <div className="card md:w-1/2 w-full max-w-xl shadow-2xl bg-base-100 pb-6">
             <form onSubmit={handleLogin} className="card-body">
               <div className="form-control">
@@ -89,7 +89,7 @@ const Login = () => {
                 />
               </div>
             </form>
-            <p>
+            {/* <p>
               <small className="px-6">
                 Do Not Have An Account? Please{" "}
                 <Link to="/register">Register</Link>
@@ -97,7 +97,7 @@ const Login = () => {
             </p>
             <h2 className="p-6">
               <SocialLogin></SocialLogin>
-            </h2>
+            </h2> */}
           </div>
         </div>
       </div>

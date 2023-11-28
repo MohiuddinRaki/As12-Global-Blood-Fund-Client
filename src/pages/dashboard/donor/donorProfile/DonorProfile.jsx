@@ -42,7 +42,6 @@ const DonorProfile = () => {
                 {singleUserInfo?.district}
               </h1>
               <Link to={`/dashboard/donationUsers/${singleUserInfo?._id}`}>
-                {" "}
                 <button className="w-full btn btn-success mt-5">Update</button>
               </Link>
             </div>

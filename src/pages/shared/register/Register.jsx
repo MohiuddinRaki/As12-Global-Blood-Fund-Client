@@ -1,9 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UseAuth from "../../../hooks/UseAuth";
 import { useForm } from "react-hook-form";
 import UseAxiosPublic from "../../../hooks/UseAxiosPublic";
 import Swal from "sweetalert2";
-import SocialLogin from "../socialLogin/SocialLogin";
+// import SocialLogin from "../socialLogin/SocialLogin";
 import UseDistrict from "../../../hooks/UseDistrict";
 import UseUpazila from "../../../hooks/UseUpazila";
 import { Helmet } from "react-helmet-async";
@@ -83,9 +83,9 @@ const Register = () => {
       <Helmet>
         <title>Global Blood Fund || register</title>
       </Helmet>
-      <div className="bg-base-200 pt-16">
+      <div className="pt-16">
         <h1 className="text-5xl text-center font-bold">Sign Up Now!</h1>
-        <div className="hero min-h-screen">
+        <div className="hero mt-14">
           {/* <div className="hero-content flex-col lg:flex-row-reverse"> */}
           {/* <div className="md:w-1/2 w-full max-w-xl">
          <img src="https://i.ibb.co/YW2kYcG/istockphoto-1349428314-640x640.jpg" alt="" />
@@ -273,14 +273,14 @@ const Register = () => {
                 />
               </div>
             </form>
-            <p>
+            {/* <p>
               <small className="px-6">
                 Alreday have an accoint? <Link to="/login">Please Login</Link>
               </small>
             </p>
             <h2 className="p-6">
               <SocialLogin></SocialLogin>
-            </h2>
+            </h2> */}
           </div>
         </div>
       </div>

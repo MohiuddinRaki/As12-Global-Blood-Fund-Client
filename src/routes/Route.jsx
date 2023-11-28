@@ -16,6 +16,7 @@ import MyRequest from "../pages/dashboard/donor/myRequest/MyRequest";
 import DonorContact from "../pages/dashboard/donor/donorContact/DonorContact";
 import DonorUpdateForm from "../component/donorUpdate/DonorUpdateForm";
 import DashboardDonor from "../pages/dashboard/donor/dashboardDonor/DashboardDonor";
+import DonorRequestUpdate from "../pages/dashboard/donor/donorRequestUpdate/DonorRequestUpdate";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +57,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  // for dashboard:
   {
     path: "dashboard",
     element: (
@@ -67,29 +69,38 @@ export const router = createBrowserRouter([
       // for donor Route:
       {
         index: true,
-        element: <DashboardDonor></DashboardDonor>
+        element: <DashboardDonor></DashboardDonor>,
       },
       {
         path: "profile",
-        element: <DonorProfile></DonorProfile>
+        element: <DonorProfile></DonorProfile>,
       },
       {
         path: "create-donation-request",
-        element: <CreateRequest></CreateRequest>
+        element: <CreateRequest></CreateRequest>,
       },
       {
-        path: 'myRequest',
-        element: <MyRequest></MyRequest>
+        path: "myRequest",
+        element: <MyRequest></MyRequest>,
       },
       {
-        path: 'contact',
-        element: <DonorContact></DonorContact>
+        path: "contact",
+        element: <DonorContact></DonorContact>,
       },
       {
         path: "donationUsers/:id",
         element: <DonorUpdateForm></DonorUpdateForm>,
-        loader: ({params}) => fetch(`http://localhost:5000/dashboard/donationUsers/${params.id}`)
-      }
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/dashboard/donationUsers/${params.id}`),
+      },
+      {
+        path: "donatorCreateRequest/:id",
+        element: <DonorRequestUpdate></DonorRequestUpdate>,
+        // loader: ({ params }) =>
+        //   fetch(
+        //     `http://localhost:5000/dashboard/donatorCreateRequest/${params.id}`
+        //   ),
+      },
 
       // // admin route:
       // {

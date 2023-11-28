@@ -1,14 +1,14 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import UseAxiosPublic from "../../../../hooks/UseAxiosPublic";
 import UseDistrict from "../../../../hooks/UseDistrict";
 import UseUpazila from "../../../../hooks/UseUpazila";
 import UseAuth from "../../../../hooks/UseAuth";
+import UseAxiosSecure from "../../../../hooks/UseAxiosSecure";
 
 const CreateRequest = () => {
   const { user } = UseAuth();
-  const axiosPublic = UseAxiosPublic();
+  const axiosSecure = UseAxiosSecure();
   const [donatorDistrict] = UseDistrict();
   const [donatorUpazila] = UseUpazila();
   const {
@@ -28,7 +28,7 @@ const CreateRequest = () => {
     const hospitalName = data.hospitalName;
     const hospitalAddress = data.hospitalAddress;
     const donationDate = data.donationDate;
-    const donationTime = data.blodGroup;
+    const donationTime = data.donationTime;
     const donatorCreateRequestInfo = {
       requesterName,
       requesterEmail,
@@ -40,10 +40,11 @@ const CreateRequest = () => {
       hospitalAddress,
       donationDate,
       donationTime,
+      status: 'pending'
     };
 
     console.log(donatorCreateRequestInfo);
-    axiosPublic
+    axiosSecure
       .post("/donatorCreateRequest", donatorCreateRequestInfo)
       .then((res) => {
         if (res.data.insertedId) {
@@ -65,7 +66,7 @@ const CreateRequest = () => {
         <title>Global Blood Fund | Dashboard | Creat Request</title>
       </Helmet>
       <h1 className="text-5xl text-center font-bold">
-        <span className="text-red-500">Creat</span> Request!
+        <span className="text-red-500">Create</span> Request!
       </h1>
       <div className="hero mt-7">
         {/* <div className="hero-content flex-col lg:flex-row-reverse"> */}
@@ -206,7 +207,7 @@ const CreateRequest = () => {
                   <span className="label-text">Hospital Address*</span>
                 </label>
                 <input
-                  type="text"
+                  type="address"
                   placeholder="Hospital Address"
                   {...register("hospitalAddress", { required: true })}
                   className="input input-bordered"
