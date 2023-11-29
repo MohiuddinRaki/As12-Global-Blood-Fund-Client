@@ -115,34 +115,34 @@ export const router = createBrowserRouter([
       },
 
       // admin route:
-      // {
-      //   index: true,
-      //   element: <DashboardAdmin></DashboardAdmin>,
-      // },
-      // {
-      //   path: "adminprofile",
-      //   element: <AdminProfile></AdminProfile>,
-      // },
-      // {
-      //   path: "allUsers",
-      //   element: <AllUsers></AllUsers>,
-      // },
-      // {
-      //   path: "all-blood-donation-request",
-      //   element: <AllDonationRequest></AllDonationRequest>,
-      // },
-      // {
-      //   path: "content-management",
-      //   element: <ContentManagement></ContentManagement>,
-      // },
-      // {
-      //   path: "content-management/add-blog",
-      //   element: <AddBlog></AddBlog>,
-      // },
-      // {
-      //   path: "content-management/add-blog/:id",
-      //   element: <UpdateBlog></UpdateBlog>,
-      // },
+      {
+        index: true,
+        element: <DashboardAdmin></DashboardAdmin>,
+      },
+      {
+        path: "adminprofile",
+        element: <AdminProfile></AdminProfile>,
+      },
+      {
+        path: "allUsers",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "all-blood-donation-request",
+        element: <AllDonationRequest></AllDonationRequest>,
+      },
+      {
+        path: "content-management",
+        element: <ContentManagement></ContentManagement>,
+      },
+      {
+        path: "content-management/add-blog",
+        element: <AddBlog></AddBlog>,
+      },
+      {
+        path: "content-management/add-blog/:id",
+        element: <UpdateBlog></UpdateBlog>,
+      },
 
       // Volunteer Route:
 
