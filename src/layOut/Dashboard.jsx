@@ -38,8 +38,8 @@ const Dashboard = () => {
   // // ToDo: get isadmin value from the database:
   // const [isAdmin] = useAdmin();
   const { logOutUser } = UseAuth();
-  const isAdmin = true;
-  const isVolunteer = true;
+  const isAdmin = false;
+  const isVolunteer = false;
 
   return (
     <>

@@ -19,7 +19,7 @@ const Banner = () => {
           </p>
           <div className="flex justify-center gap-7 mt-8">
           <h1><Link to="/register"><button className="btn btn-outline text-white text-xl">Join as a donor</button></Link></h1>
-          <h1><Link to="/register"><button className="btn btn-accent text-white text-xl">Search Donors</button></Link></h1>
+          <h1><Link to="/donorSearch"><button className="btn btn-accent text-white text-xl">Search Donors</button></Link></h1>
           </div>
         </div>
       </div>

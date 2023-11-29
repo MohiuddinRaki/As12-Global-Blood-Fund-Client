@@ -29,6 +29,7 @@ import VContentManagement from "../pages/dashboard/volunteer/contentManagement/V
 import AllDonationRequestV from "../pages/dashboard/volunteer/allDonationRequestV/AllDonationRequestV";
 import AddBlogV from "../pages/dashboard/volunteer/addBlog/AddBlogV";
 import UpdateBlogV from "../pages/dashboard/volunteer/updateBlog/UpdateBlogV";
+import DonorSearchPage from "../pages/shared/donorSearchPage/DonorSearchPage";
 
 export const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
         path: "contactUsF",
         element: <ContactUsF></ContactUsF>,
       },
+      {
+        path: "donorSearch",
+        element: <DonorSearchPage></DonorSearchPage>,
+      },
     ],
   },
   // for dashboard:
@@ -79,10 +84,10 @@ export const router = createBrowserRouter([
     ),
     children: [
       // for donor Route:
-      // {
-      //   index: true,
-      //   element: <DashboardDonor></DashboardDonor>,
-      // },
+      {
+        index: true,
+        element: <DashboardDonor></DashboardDonor>,
+      },
       {
         path: "profile",
         element: <DonorProfile></DonorProfile>,
