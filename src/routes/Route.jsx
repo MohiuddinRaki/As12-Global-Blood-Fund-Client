@@ -17,11 +17,18 @@ import DonorContact from "../pages/dashboard/donor/donorContact/DonorContact";
 import DonorUpdateForm from "../component/donorUpdate/DonorUpdateForm";
 import DashboardDonor from "../pages/dashboard/donor/dashboardDonor/DashboardDonor";
 import DonorRequestUpdate from "../pages/dashboard/donor/donorRequestUpdate/DonorRequestUpdate";
-import AdminProfile from "../pages/dashboard/admin/adminProfile/AdminProfile";
 import AllUsers from "../pages/dashboard/admin/allUsers/AllUsers";
 import AllDonationRequest from "../pages/dashboard/admin/allDonationRequest/AllDonationRequest";
 import ContentManagement from "../pages/dashboard/admin/contentManagement/ContentManagement";
-import AddBlog from "../pages/dashboard/donor/addBlog/AddBlog";
+import AddBlog from "../pages/dashboard/admin/addBlog/AddBlog";
+import UpdateBlog from "../pages/dashboard/admin/updateBlog/UpdateBlog";
+import AdminProfile from "../pages/dashboard/admin/adminProfile/AdminProfile";
+import DashboardAdmin from "../pages/dashboard/admin/dashboardAdmin/DashboardAdmin";
+import DashboardVolunter from "../pages/dashboard/volunteer/dashboardVolunter/DashboardVolunter";
+import VContentManagement from "../pages/dashboard/volunteer/contentManagement/VContentManagement";
+import AllDonationRequestV from "../pages/dashboard/volunteer/allDonationRequestV/AllDonationRequestV";
+import AddBlogV from "../pages/dashboard/volunteer/addBlog/AddBlogV";
+import UpdateBlogV from "../pages/dashboard/volunteer/updateBlog/UpdateBlogV";
 
 export const router = createBrowserRouter([
   {
@@ -72,10 +79,10 @@ export const router = createBrowserRouter([
     ),
     children: [
       // for donor Route:
-      {
-        index: true,
-        element: <DashboardDonor></DashboardDonor>,
-      },
+      // {
+      //   index: true,
+      //   element: <DashboardDonor></DashboardDonor>,
+      // },
       {
         path: "profile",
         element: <DonorProfile></DonorProfile>,
@@ -108,26 +115,57 @@ export const router = createBrowserRouter([
       },
 
       // admin route:
+      // {
+      //   index: true,
+      //   element: <DashboardAdmin></DashboardAdmin>,
+      // },
+      // {
+      //   path: "adminprofile",
+      //   element: <AdminProfile></AdminProfile>,
+      // },
+      // {
+      //   path: "allUsers",
+      //   element: <AllUsers></AllUsers>,
+      // },
+      // {
+      //   path: "all-blood-donation-request",
+      //   element: <AllDonationRequest></AllDonationRequest>,
+      // },
+      // {
+      //   path: "content-management",
+      //   element: <ContentManagement></ContentManagement>,
+      // },
+      // {
+      //   path: "content-management/add-blog",
+      //   element: <AddBlog></AddBlog>,
+      // },
+      // {
+      //   path: "content-management/add-blog/:id",
+      //   element: <UpdateBlog></UpdateBlog>,
+      // },
+
+      // Volunteer Route:
+
       {
-        path: "adminprofile",
-        element: <AdminProfile></AdminProfile>,
-      },
-      {
-        path: "allUsers",
-        element: <AllUsers></AllUsers>,
-      },
-      {
-        path: "all-blood-donation-request",
-        element: <AllDonationRequest></AllDonationRequest>,
+        index: true,
+        element: <DashboardVolunter></DashboardVolunter>,
       },
       {
         path: "content-management",
-        element: <ContentManagement></ContentManagement>,
+        element: <VContentManagement></VContentManagement>,
+      },
+      {
+        path: "all-blood-donation-request",
+        element: <AllDonationRequestV></AllDonationRequestV>,
       },
       {
         path: "content-management/add-blog",
-        element: <AddBlog></AddBlog>
-      }
+        element: <AddBlogV></AddBlogV>,
+      },
+      {
+        path: "content-management/add-blog/:id",
+        element: <UpdateBlogV></UpdateBlogV>,
+      },
 
       // {
       //   path: "addItems",

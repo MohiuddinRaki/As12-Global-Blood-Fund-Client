@@ -1,8 +1,4 @@
 import { useState } from "react";
-import UseAuth from "../../../../hooks/UseAuth";
-import UseAxiosSecure from "../../../../hooks/UseAxiosSecure";
-import UseDonorRequest from "../../../../hooks/UseDonorRequest";
-import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import {
   Paper,
@@ -14,11 +10,14 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import UseDonorRequest from "../../../../hooks/UseDonorRequest";
+// import UseAxiosSecure from "../../../../hooks/UseAxiosSecure";
+import UseAuth from "../../../../hooks/UseAuth";
 
-const AllDonationRequest = () => {
-  const [createRequest, refetch] = UseDonorRequest();
-  const axiosSecure = UseAxiosSecure();
+const AllDonationRequestV = () => {
+  const [createRequest] = UseDonorRequest();
+//   const axiosSecure = UseAxiosSecure();
   const createRequestLength = createRequest.length > 0;
   const { user } = UseAuth();
 
@@ -34,32 +33,33 @@ const AllDonationRequest = () => {
     setPage(0);
   };
 
-  const handleDeleteItem = (item) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        const res = await axiosSecure.delete(
-          `/donatorCreateRequest/${item._id}`
-        );
-        if (res.data.deletedCount > 0) {
-          refetch();
-          Swal.fire({
-            title: "Deleted!",
-            text: "Your request has been deleted.",
-            icon: "success",
-          });
-        }
-        console.log(res.data);
-      }
-    });
-  };
+//   const handleDeleteItem = (item) => {
+//     Swal.fire({
+//       title: "Are you sure?",
+//       text: "You won't be able to revert this!",
+//       icon: "warning",
+//       showCancelButton: true,
+//       confirmButtonColor: "#3085d6",
+//       cancelButtonColor: "#d33",
+//       confirmButtonText: "Yes, delete it!",
+//     }).then(async (result) => {
+//       if (result.isConfirmed) {
+//         const res = await axiosSecure.delete(
+//           `/donatorCreateRequest/${item._id}`
+//         );
+//         if (res.data.deletedCount > 0) {
+//           refetch();
+//           Swal.fire({
+//             title: "Deleted!",
+//             text: "Your request has been deleted.",
+//             icon: "success",
+//           });
+//         }
+//         console.log(res.data);
+//       }
+//     });
+//   };
+
   return (
     <>
       {createRequestLength ? (
@@ -98,7 +98,7 @@ const AllDonationRequest = () => {
                   <TableCell align="left">
                     <span className="text-lg text-red-500">donation time</span>
                   </TableCell>
-                  <TableCell align="left">
+                  {/* <TableCell align="left">
                     <span className="text-lg text-red-500">Edit</span>
                   </TableCell>
                   <TableCell align="left">
@@ -106,7 +106,7 @@ const AllDonationRequest = () => {
                   </TableCell>
                   <TableCell align="left">
                     <span className="text-lg text-red-500">View</span>
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -138,7 +138,7 @@ const AllDonationRequest = () => {
                       </TableCell>
                       <TableCell align="left">{row.donationDate}</TableCell>
                       <TableCell align="left">{row.donationTime}</TableCell>
-                      <TableCell align="left">
+                      {/* <TableCell align="left">
                         <Link to={`/dashboard/donatorCreateRequest/${row._id}`}>
                           <button className="btn btn-info text-white">
                             Edit
@@ -157,7 +157,7 @@ const AllDonationRequest = () => {
                         <button className="btn btn-accent text-white">
                           View
                         </button>
-                      </TableCell>
+                      </TableCell> */}
                     </TableRow>
                   ))}
               </TableBody>
@@ -174,12 +174,10 @@ const AllDonationRequest = () => {
           </TableContainer>
         </div>
       ) : (
-        <h1 className="text-6xl text-center mt-24 font-bold text-rose-400">
-          No Request Have been Created Yet
-        </h1>
+        ""
       )}
     </>
   );
 };
 
-export default AllDonationRequest;
+export default AllDonationRequestV;

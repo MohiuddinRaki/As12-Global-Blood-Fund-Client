@@ -38,8 +38,8 @@ const Dashboard = () => {
   // // ToDo: get isadmin value from the database:
   // const [isAdmin] = useAdmin();
   const { logOutUser } = UseAuth();
-  const isAdmin = true;
-  const isVolunteer = false;
+  const isAdmin = false;
+  const isVolunteer = true;
 
   return (
     <>
@@ -123,15 +123,15 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
-                  <NavLink to="/dashboard/create-donation-request">
+                  <NavLink to="/dashboard/all-blood-donation-request">
                     {/* <FaHistory></FaHistory> */}
-                    Create Request
+                    All donation Request
                   </NavLink>
                 </li>
                 <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
-                  <NavLink to="/dashboard/myRequest">
+                  <NavLink to="/dashboard/content-management">
                     {/* <FaAd></FaAd> */}
-                    My Request
+                    Content Management
                   </NavLink>
                 </li>
 
