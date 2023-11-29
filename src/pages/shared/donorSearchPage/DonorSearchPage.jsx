@@ -9,18 +9,19 @@ const DonorSearchPage = () => {
   const [donatorDistrict] = UseDistrict();
   const [donatorUpazila] = UseUpazila();
   const [filterDonors, setFilterDonors] = useState([]);
+  const filterDonorsLength = filterDonors.length > 0;
 
   const handleSearchDonor = (event) => {
     event.preventDefault();
     const filteringBlogs = userInfo.filter(
-      (blog) =>
-        blog.district
+      (donor) =>
+        donor.district
           .toLowerCase()
           .includes(event.target.district.value.toLowerCase()) &&
-        blog.upazila
+        donor.upazila
           .toLowerCase()
           .includes(event.target.upazila.value.toLowerCase()) &&
-        blog.blodGroup
+        donor.blodGroup
           .toLowerCase()
           .includes(event.target.blodGroup.value.toLowerCase())
     );
@@ -111,50 +112,62 @@ const DonorSearchPage = () => {
             />
           </form>
         </div>
-        {filterDonors.length > 0 && (
+        {filterDonorsLength ? (
+          <>
+            <h1 className="text-center font-bold text-4xl text-lime-500">
+              Donor List
+            </h1>
+
+            <div className="container mx-auto grid grid-cols- md:grid-cols-2 gap-7 mt-10">
+              {filterDonors.map((donor) => (
+                <motion.div
+                  key={donor._id}
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0 }}
+                  transition={{ duration: 1 }}
+                  className="card card-compact bg-gray-500 shadow-xl"
+                >
+                  <div className="flex gap-8">
+                    <div className="w-1/2">
+                      <img
+                        className="h-full"
+                        src={donor.image}
+                        alt={donor.name}
+                      />
+                    </div>
+                    <div className="w-1/2 space-y-3 mt-3">
+                      <h2 className="text-2xl font-semiboldld text-lime-500">
+                        <span className="text-orange-400">Name:</span>{" "}
+                        {donor.name}
+                      </h2>
+                      <h2 className="text-2xl font-semiboldld text-lime-500">
+                        <span className="text-orange-400">Email:</span>{" "}
+                        {donor.email}
+                      </h2>
+                      <h2 className="text-2xl font-semiboldld text-lime-500">
+                        <span className="text-orange-400">Blood Group:</span>{" "}
+                        {donor.blodGroup}
+                      </h2>
+                      <h2 className="text-2xl font-semiboldld text-lime-500">
+                        <span className="text-orange-400">Upazila:</span>{" "}
+                        {donor.upazila}
+                      </h2>
+                      <h2 className="text-2xl font-semiboldld text-lime-500">
+                        <span className="text-orange-400">District:</span>{" "}
+                        {donor.district}
+                      </h2>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </>
+        ) : (
           <h1 className="text-center font-bold text-4xl text-lime-500">
-            Donor List
+            No Available Donor in Your Information
           </h1>
         )}
-        <div className="container mx-auto grid grid-cols- md:grid-cols-2 gap-7 mt-10">
-          {filterDonors.map((donor) => (
-            <motion.div
-              key={donor._id}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0 }}
-              transition={{ duration: 1 }}
-              className="card card-compact bg-gray-500 shadow-xl"
-            >
-              <div className="flex gap-8">
-                <div className="w-1/2">
-                  <img className="h-full" src={donor.image} alt={donor.name} />
-                </div>
-                <div className="w-1/2 space-y-3 mt-3">
-                  <h2 className="text-2xl font-semiboldld text-lime-500">
-                    <span className="text-orange-400">Name:</span> {donor.name}
-                  </h2>
-                  <h2 className="text-2xl font-semiboldld text-lime-500">
-                    <span className="text-orange-400">Email:</span>{" "}
-                    {donor.email}
-                  </h2>
-                  <h2 className="text-2xl font-semiboldld text-lime-500">
-                    <span className="text-orange-400">Blood Group:</span>{" "}
-                    {donor.blodGroup}
-                  </h2>
-                  <h2 className="text-2xl font-semiboldld text-lime-500">
-                    <span className="text-orange-400">Upazila:</span>{" "}
-                    {donor.upazila}
-                  </h2>
-                  <h2 className="text-2xl font-semiboldld text-lime-500">
-                    <span className="text-orange-400">District:</span>{" "}
-                    {donor.district}
-                  </h2>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </>
   );
