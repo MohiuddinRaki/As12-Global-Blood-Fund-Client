@@ -34,6 +34,7 @@ const DonorRequestUpdate = () => {
     const hospitalAddress = data.hospitalAddress;
     const donationDate = data.donationDate;
     const donationTime = data.donationTime;
+    const status = data.status;
 
     // now send the menu item data to the server with image url:
     const updateDonorRequestInfo = {
@@ -47,6 +48,7 @@ const DonorRequestUpdate = () => {
       hospitalAddress,
       donationDate,
       donationTime,
+      status,
     };
     console.log(updateDonorRequestInfo);
     const meniRes = await axiosSecure.put(

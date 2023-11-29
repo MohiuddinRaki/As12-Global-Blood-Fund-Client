@@ -154,9 +154,11 @@ const MyRequest = () => {
                       </button>
                     </TableCell>
                     <TableCell align="left">
-                      <button className="btn btn-accent text-white">
-                        View
-                      </button>
+                      <Link to={`/donationDetails/${row._id}`}>
+                        <button className="btn btn-accent text-white">
+                          View
+                        </button>
+                      </Link>
                     </TableCell>
                   </TableRow>
                 ))}

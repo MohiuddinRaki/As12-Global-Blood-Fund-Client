@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "@mui/material";
 import UseDonorRequest from "../../../hooks/UseDonorRequest";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const DonationRequest = () => {
   const [createRequest] = UseDonorRequest();
@@ -116,9 +116,11 @@ const DonationRequest = () => {
                       <TableCell align="left">{row.donationDate}</TableCell>
                       <TableCell align="left">{row.donationTime}</TableCell>
                       <TableCell align="left">
-                        <button className="btn btn-accent text-white">
-                          View
-                        </button>
+                        <Link to={`/donationDetails/${row._id}`}>
+                          <button className="btn btn-accent text-white">
+                            View
+                          </button>
+                        </Link>
                       </TableCell>
                     </TableRow>
                   ))}

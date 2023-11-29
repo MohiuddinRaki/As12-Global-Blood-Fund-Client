@@ -30,6 +30,7 @@ import AllDonationRequestV from "../pages/dashboard/volunteer/allDonationRequest
 import AddBlogV from "../pages/dashboard/volunteer/addBlog/AddBlogV";
 import UpdateBlogV from "../pages/dashboard/volunteer/updateBlog/UpdateBlogV";
 import DonorSearchPage from "../pages/shared/donorSearchPage/DonorSearchPage";
+import DonationDetails from "../pages/shared/donationDetails/DonationDetails";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
       {
         path: "donorSearch",
         element: <DonorSearchPage></DonorSearchPage>,
+      },
+      {
+        path: "donationDetails/:id",
+        element: <DonationDetails></DonationDetails>,
       },
     ],
   },
