@@ -8,13 +8,14 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { TablePagination } from "@mui/material";
 import { useState } from "react";
-// import Swal from "sweetalert2";
-// import UseAxiosSecure from "../../../../hooks/UseAxiosSecure";
 import UseUserInfo from "../../../../hooks/UseUserInfo";
+import { FaUser } from "react-icons/fa";
+import UseAxiosSecure from "../../../../hooks/UseAxiosSecure";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
-  const [userInfo] = UseUserInfo();
-//   const axiosSecure = UseAxiosSecure();
+  const [userInfo, refetch] = UseUserInfo();
+  const axiosSecure = UseAxiosSecure();
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -28,32 +29,156 @@ const AllUsers = () => {
     setPage(0);
   };
 
-//   const handleDeleteItem = (item) => {
-//     Swal.fire({
-//       title: "Are you sure?",
-//       text: "You won't be able to revert this!",
-//       icon: "warning",
-//       showCancelButton: true,
-//       confirmButtonColor: "#3085d6",
-//       cancelButtonColor: "#d33",
-//       confirmButtonText: "Yes, delete it!",
-//     }).then(async (result) => {
-//       if (result.isConfirmed) {
-//         const res = await axiosSecure.delete(
-//           `/donatorCreateRequest/${item._id}`
-//         );
-//         if (res.data.deletedCount > 0) {
-//           refetch();
-//           Swal.fire({
-//             title: "Deleted!",
-//             text: "Your request has been deleted.",
-//             icon: "success",
-//           });
-//         }
-//         console.log(res.data);
-//       }
-//     });
-//   };
+  const handleBlock = async (donor) => {
+    //  send data to the server:
+    const name = donor.name;
+    const email = donor.email;
+    const district = donor.district;
+    const upazila = donor.upazila;
+    const blodGroup = donor.blodGroup;
+    const image = donor.image;
+    const role = "donor";
+    const status = "block";
+    const userInfo = {
+      name,
+      email,
+      district,
+      upazila,
+      blodGroup,
+      image,
+      role,
+      status,
+    };
+
+    const meniRes = await axiosSecure.put(
+      `/dashboard/donationUsers/${donor?._id}`,
+      userInfo
+    );
+    console.log(meniRes.data);
+    if (meniRes.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: `now ${donor?.name} blocked`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  const handleUnBlock = async (donor) => {
+    //  send data to the server:
+    const name = donor.name;
+    const email = donor.email;
+    const district = donor.district;
+    const upazila = donor.upazila;
+    const blodGroup = donor.blodGroup;
+    const image = donor.image;
+    const role = "donor";
+    const status = "active";
+    const userInfo = {
+      name,
+      email,
+      district,
+      upazila,
+      blodGroup,
+      image,
+      role,
+      status,
+    };
+
+    const meniRes = await axiosSecure.put(
+      `/dashboard/donationUsers/${donor?._id}`,
+      userInfo
+    );
+    console.log(meniRes.data);
+    if (meniRes.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: `now ${donor?.name} active`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+  const handleAdmin = async (donor) => {
+    //  send data to the server:
+    const name = donor.name;
+    const email = donor.email;
+    const district = donor.district;
+    const upazila = donor.upazila;
+    const blodGroup = donor.blodGroup;
+    const image = donor.image;
+    const role = "admin";
+    const status = donor.status;
+    const userInfo = {
+      name,
+      email,
+      district,
+      upazila,
+      blodGroup,
+      image,
+      role,
+      status,
+    };
+
+    const meniRes = await axiosSecure.put(
+      `/dashboard/donationUsers/${donor?._id}`,
+      userInfo
+    );
+    console.log(meniRes.data);
+    if (meniRes.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: `now ${donor?.name} is an admin`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+  const handleVolunteer = async (donor) => {
+    //  send data to the server:
+    const name = donor.name;
+    const email = donor.email;
+    const district = donor.district;
+    const upazila = donor.upazila;
+    const blodGroup = donor.blodGroup;
+    const image = donor.image;
+    const role = "volunteer";
+    const status = donor.status;
+    const userInfo = {
+      name,
+      email,
+      district,
+      upazila,
+      blodGroup,
+      image,
+      role,
+      status,
+    };
+
+    const meniRes = await axiosSecure.put(
+      `/dashboard/donationUsers/${donor?._id}`,
+      userInfo
+    );
+    console.log(meniRes.data);
+    if (meniRes.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: `now ${donor?.name} is a Volunteer`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
   return (
     <>
       <div>
@@ -73,19 +198,44 @@ const AllUsers = () => {
             <TableHead>
               <TableRow>
                 <TableCell>
-                  <span className="text-lg text-red-500">user avatar</span>
+                  <span className="text-xl font-semibold text-red-500">
+                    avatar
+                  </span>
                 </TableCell>
                 <TableCell className="left">
-                  <span className="text-lg text-red-500">user name</span>
+                  <span className="text-xl font-semibold text-red-500">
+                    name
+                  </span>
                 </TableCell>
                 <TableCell align="left">
-                  <span className="text-lg text-red-500">user email</span>
+                  <span className="text-xl font-semibold text-red-500">
+                    email
+                  </span>
                 </TableCell>
                 <TableCell align="left">
-                  <span className="text-lg text-red-500">user status</span>
+                  <span className="text-xl font-semibold text-red-500">
+                    status
+                  </span>
                 </TableCell>
                 <TableCell align="left">
-                  <span className="text-lg text-red-500">user role</span>
+                  <span className="text-xl font-semibold text-red-500">
+                    role
+                  </span>
+                </TableCell>
+                <TableCell align="left">
+                  <span className="text-xl font-semibold text-red-500">
+                    Action
+                  </span>
+                </TableCell>
+                <TableCell align="left">
+                  <span className="text-xl font-semibold text-red-500">
+                    Make Admin
+                  </span>
+                </TableCell>
+                <TableCell align="left">
+                  <span className="text-xl font-semibold text-red-500">
+                    Make Volunteer
+                  </span>
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -98,58 +248,83 @@ const AllUsers = () => {
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      <img
+                        className="w-14 h-14 rounded-full"
+                        src={row.image}
+                        alt={row.name}
+                      />
                     </TableCell>
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      <span className="text-lg flex w-max text-white rounded-md p-2 border box-border bg-emerald-500">
+                        {row.name}
+                      </span>
                     </TableCell>
                     <TableCell component="th" scope="row">
-                      {row.email}
+                      <span className="text-sm text-white rounded-md p-2 border bg-cyan-500 box-border">
+                        {row.email}
+                      </span>
                     </TableCell>
-                    <TableCell align="left">
-                      <select
-                        defaultValue="default"
-                        className="select select-bordered"
-                      >
-                        <option disabled value="default">
-                          select status
-                        </option>
-                        <option value={row.status}>{row.status}</option>
-                        <option value={row.status}>{row.status}</option>
-                      </select>
+                    <TableCell component="th" scope="row">
+                      <span className="text-xl text-white rounded-md p-2 border bg-green-500  box-border">
+                        {row.status}
+                      </span>
                     </TableCell>
-                    <TableCell align="left">
-                      <select
-                        defaultValue="default"
-                        className="select select-bordered"
-                      >
-                        <option disabled value="default">
-                          select role
-                        </option>
-                        <option value={row.status}>{row.role}</option>
-                        <option value={row.status}>{row.role}</option>
-                      </select>
+                    <TableCell component="th" scope="row">
+                      <span className="text-xl text-white rounded-md p-2 border bg-orange-500  box-border">
+                        {row.role}
+                      </span>
                     </TableCell>
-                    {/* <TableCell align="left">
-                      <Link to={`/dashboard/donatorCreateRequest/${row._id}`}>
-                        <button className="btn btn-info text-white">
-                          Edit
+                    <TableCell component="th" scope="row">
+                      {row?.status === "active" ? (
+                        <button
+                          onClick={() => handleBlock(row)}
+                          className="btn btn-warning"
+                        >
+                          Block
                         </button>
-                      </Link>
+                      ) : (
+                        <button
+                          onClick={() => handleUnBlock(row)}
+                          className="btn btn-accent"
+                        >
+                          UnBlock
+                        </button>
+                      )}
                     </TableCell>
-                    <TableCell align="left">
-                      <button
-                        onClick={() => handleDeleteItem(row)}
-                        className="btn btn-warning text-white"
-                      >
-                        Remove
-                      </button>
+                    <TableCell component="th" scope="row">
+                      {row?.role === "admin" && row?.status === "active" ? (
+                        <span className="text-zinc-500 text-3xl">Admin</span>
+                      ) : row?.status === "block" ? (
+                        <button className="text-green-500 text-3xl">
+                          <FaUser></FaUser>
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleAdmin(row)}
+                          className="text-green-500 text-3xl"
+                        >
+                          <FaUser></FaUser>
+                        </button>
+                      )}
                     </TableCell>
-                    <TableCell align="left">
-                      <button className="btn btn-accent text-white">
-                        View
-                      </button>
-                    </TableCell> */}
+                    <TableCell component="th" scope="row">
+                      {row?.role === "volunteer" && row?.status === "active" ? (
+                        <span className="text-zinc-500 text-3xl">
+                          volunteer
+                        </span>
+                      ) : row?.status === "block" ? (
+                        <button className="text-green-500 text-3xl">
+                          <FaUser></FaUser>
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleVolunteer(row)}
+                          className="text-green-500 text-3xl"
+                        >
+                          <FaUser></FaUser>
+                        </button>
+                      )}
+                    </TableCell>
                   </TableRow>
                 ))}
             </TableBody>

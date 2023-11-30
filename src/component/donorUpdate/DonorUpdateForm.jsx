@@ -49,8 +49,9 @@ const DonorUpdateForm = () => {
         blodGroup,
         image,
         role: "donor",
+        status: "active"
       };
-      const meniRes = await axiosPublic.patch(
+      const meniRes = await axiosPublic.put(
         `/dashboard/donationUsers/${singleUserInfo?._id}`,
         userInfo
       );

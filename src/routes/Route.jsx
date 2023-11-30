@@ -89,10 +89,10 @@ export const router = createBrowserRouter([
     ),
     children: [
       // for donor Route:
-      {
-        index: true,
-        element: <DashboardDonor></DashboardDonor>,
-      },
+      // {
+      //   index: true,
+      //   element: <DashboardDonor></DashboardDonor>,
+      // },
       {
         path: "profile",
         element: <DonorProfile></DonorProfile>,

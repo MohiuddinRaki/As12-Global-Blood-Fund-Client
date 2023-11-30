@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import "./dashboard.css";
 import UseAuth from "../hooks/UseAuth";
+import UseUserInfo from "../hooks/UseUserInfo";
 // import useAdmin from "../hooks/useAdmin";
 
 // const Dashboard = () => {
@@ -37,8 +38,13 @@ const Dashboard = () => {
   // const [cart] = useCart();
   // // ToDo: get isadmin value from the database:
   // const [isAdmin] = useAdmin();
-  const { logOutUser } = UseAuth();
-  const isAdmin = false;
+  const { user, logOutUser } = UseAuth();
+  const [userInfo] = UseUserInfo();
+  const blockUser = userInfo.find(
+    (blckUser) => blckUser.email === user.email
+  );
+
+  const isAdmin = true;
   const isVolunteer = false;
 
   return (
@@ -78,7 +84,6 @@ const Dashboard = () => {
                     Content Management
                   </NavLink>
                 </li>
-
                 {/* shared navlinks */}
                 <div className="divider"></div>
                 <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
@@ -178,12 +183,14 @@ const Dashboard = () => {
                     Profile
                   </NavLink>
                 </li>
-                <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
-                  <NavLink to="/dashboard/create-donation-request">
-                    {/* <FaHistory></FaHistory> */}
-                    Create Request
-                  </NavLink>
-                </li>
+                {blockUser?.status === "active" && (
+                  <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
+                    <NavLink to="/dashboard/create-donation-request">
+                      {/* <FaHistory></FaHistory> */}
+                      Create Request
+                    </NavLink>
+                  </li>
+                )}
                 <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
                   <NavLink to="/dashboard/myRequest">
                     {/* <FaAd></FaAd> */}

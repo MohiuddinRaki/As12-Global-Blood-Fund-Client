@@ -107,7 +107,7 @@ const AddBlog = () => {
       Swal.fire({
         position: "top",
         icon: "success",
-        title: "updated Blog Successfully",
+        title: "Blog Publish Successfully",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -136,7 +136,7 @@ const AddBlog = () => {
       Swal.fire({
         position: "top",
         icon: "success",
-        title: "updated Blog Successfully",
+        title: "Blog draft Successfully",
         showConfirmButton: false,
         timer: 1500,
       });
