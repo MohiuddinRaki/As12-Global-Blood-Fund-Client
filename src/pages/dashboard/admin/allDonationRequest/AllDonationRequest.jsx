@@ -60,6 +60,94 @@ const AllDonationRequest = () => {
       }
     });
   };
+
+  const handleDoneRequest = async (data) => {
+    //  send data to the server:
+    const requesterName = data.requesterName;
+    const requesterEmail = data.requesterEmail;
+    const recipientName = data.recipientName;
+    const requestMessage = data.requestMessage;
+    const recipientDistrict = data.recipientDistrict;
+    const recipientUpazila = data.recipientUpazila;
+    const hospitalName = data.hospitalName;
+    const hospitalAddress = data.hospitalAddress;
+    const donationDate = data.donationDate;
+    const donationTime = data.donationTime;
+    const status = "done";
+    const updateDonorRequestInfo = {
+      requesterName,
+      requesterEmail,
+      recipientName,
+      requestMessage,
+      recipientDistrict,
+      recipientUpazila,
+      hospitalName,
+      hospitalAddress,
+      donationDate,
+      donationTime,
+      status,
+    };
+
+    const meniRes = await axiosSecure.put(
+      `/dashboard/donatorCreateRequest/${data?._id}`,
+      updateDonorRequestInfo
+    );
+    console.log(meniRes.data);
+    if (meniRes.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "status Updated to done successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+
+  const handleCancelRequest = async (data) => {
+    //  send data to the server:
+    const requesterName = data.requesterName;
+    const requesterEmail = data.requesterEmail;
+    const recipientName = data.recipientName;
+    const requestMessage = data.requestMessage;
+    const recipientDistrict = data.recipientDistrict;
+    const recipientUpazila = data.recipientUpazila;
+    const hospitalName = data.hospitalName;
+    const hospitalAddress = data.hospitalAddress;
+    const donationDate = data.donationDate;
+    const donationTime = data.donationTime;
+    const status = "cancel";
+    const updateDonorRequestInfo = {
+      requesterName,
+      requesterEmail,
+      recipientName,
+      requestMessage,
+      recipientDistrict,
+      recipientUpazila,
+      hospitalName,
+      hospitalAddress,
+      donationDate,
+      donationTime,
+      status,
+    };
+
+    const meniRes = await axiosSecure.put(
+      `/dashboard/donatorCreateRequest/${data?._id}`,
+      updateDonorRequestInfo
+    );
+    console.log(meniRes.data);
+    if (meniRes.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "status Updated to cancel successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
   return (
     <>
       {createRequestLength ? (
@@ -125,21 +213,23 @@ const AllDonationRequest = () => {
                           <div className="flex flex-col gap-2">
                             <button
                               className="btn w-16 btn-success"
-                              // onClick={() => handleDoneRequest(row)}
+                              onClick={() => handleDoneRequest(row)}
                             >
                               Done
                             </button>
                             <button
                               className="btn w-16 btn-accent"
-                              // onClick={() => handleCancelRequest(row)}
+                              onClick={() => handleCancelRequest(row)}
                             >
                               Cancel
                             </button>
                           </div>
+                        ) : row.status === "done" ? (
+                          <button className="btn w-16">Done</button>
+                        ) : row.status === "cancel" ? (
+                          <button className="btn w-16">Cancel</button>
                         ) : (
-                          <button className="btn w-16 btn-primary">
-                            Pending
-                          </button>
+                          <button className="btn w-16">Pending</button>
                         )}
                       </TableCell>
                       <TableCell align="left">{row.hospitalName}</TableCell>
@@ -164,15 +254,11 @@ const AllDonationRequest = () => {
                         </button>
                       </TableCell>
                       <TableCell align="left">
-                        {row?.status === "inprogress" ? (
-                          "InProgress"
-                        ) : (
-                          <Link to={`/donationDetails/${row._id}`}>
-                            <button className="btn btn-accent text-white">
-                              View
-                            </button>
-                          </Link>
-                        )}
+                        <Link to={`/donationDetails/${row._id}`}>
+                          <button className="btn btn-accent text-white">
+                            View
+                          </button>
+                        </Link>
                       </TableCell>
                     </TableRow>
                   ))}

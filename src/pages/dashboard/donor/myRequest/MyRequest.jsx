@@ -62,58 +62,121 @@ const MyRequest = () => {
       }
     });
   };
-  const handleDoneRequest = (item) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, Done it!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        const res = await axiosSecure.delete(
-          `/donatorCreateRequest/${item._id}`
-        );
-        if (res.data.deletedCount > 0) {
-          refetch();
-          Swal.fire({
-            title: "Done!",
-            text: "request has been done.",
-            icon: "success",
-          });
-        }
-        console.log(res.data);
-      }
-    });
+
+  const handleDoneRequest = async (data) => {
+    //  send data to the server:
+    const requesterName = data.requesterName;
+    const requesterEmail = data.requesterEmail;
+    const recipientName = data.recipientName;
+    const requestMessage = data.requestMessage;
+    const recipientDistrict = data.recipientDistrict;
+    const recipientUpazila = data.recipientUpazila;
+    const hospitalName = data.hospitalName;
+    const hospitalAddress = data.hospitalAddress;
+    const donationDate = data.donationDate;
+    const donationTime = data.donationTime;
+    const status = "done";
+    const updateDonorRequestInfo = {
+      requesterName,
+      requesterEmail,
+      recipientName,
+      requestMessage,
+      recipientDistrict,
+      recipientUpazila,
+      hospitalName,
+      hospitalAddress,
+      donationDate,
+      donationTime,
+      status,
+    };
+
+    const meniRes = await axiosSecure.put(
+      `/dashboard/donatorCreateRequest/${data?._id}`,
+      updateDonorRequestInfo
+    );
+    console.log(meniRes.data);
+    if (meniRes.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "status Updated to done successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
-  const handleCancelRequest = (item) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, Cancel it!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        const res = await axiosSecure.delete(
-          `/donatorCreateRequest/${item._id}`
-        );
-        if (res.data.deletedCount > 0) {
-          refetch();
-          Swal.fire({
-            title: "Cancel!",
-            text: "request has been Cancel.",
-            icon: "success",
-          });
-        }
-        console.log(res.data);
-      }
-    });
+
+  const handleCancelRequest = async (data) => {
+    //  send data to the server:
+    const requesterName = data.requesterName;
+    const requesterEmail = data.requesterEmail;
+    const recipientName = data.recipientName;
+    const requestMessage = data.requestMessage;
+    const recipientDistrict = data.recipientDistrict;
+    const recipientUpazila = data.recipientUpazila;
+    const hospitalName = data.hospitalName;
+    const hospitalAddress = data.hospitalAddress;
+    const donationDate = data.donationDate;
+    const donationTime = data.donationTime;
+    const status = "cancel";
+    const updateDonorRequestInfo = {
+      requesterName,
+      requesterEmail,
+      recipientName,
+      requestMessage,
+      recipientDistrict,
+      recipientUpazila,
+      hospitalName,
+      hospitalAddress,
+      donationDate,
+      donationTime,
+      status,
+    };
+
+    const meniRes = await axiosSecure.put(
+      `/dashboard/donatorCreateRequest/${data?._id}`,
+      updateDonorRequestInfo
+    );
+    console.log(meniRes.data);
+    if (meniRes.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "status Updated to cancel successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
   };
+
+  // const handleCancelRequest = (item) => {
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, Cancel it!",
+  //   }).then(async (result) => {
+  //     if (result.isConfirmed) {
+  //       const res = await axiosSecure.delete(
+  //         `/donatorCreateRequest/${item._id}`
+  //       );
+  //       if (res.data.deletedCount > 0) {
+  //         refetch();
+  //         Swal.fire({
+  //           title: "Cancel!",
+  //           text: "request has been Cancel.",
+  //           icon: "success",
+  //         });
+  //       }
+  //       console.log(res.data);
+  //     }
+  //   });
+  // };
   return (
     <>
       <Helmet>
@@ -179,28 +242,30 @@ const MyRequest = () => {
                     <TableCell component="th" scope="row">
                       {row.recipientName}
                     </TableCell>
-                    <TableCell align="left">
-                      {row.status === "inprogress" ? (
-                        <div className="flex flex-col gap-2">
-                          <button
-                            className="btn w-16 btn-success"
-                            onClick={() => handleDoneRequest(row)}
-                          >
-                            Done
-                          </button>
-                          <button
-                            className="btn w-16 btn-accent"
-                            onClick={() => handleCancelRequest(row)}
-                          >
-                            Cancel
-                          </button>
-                        </div>
-                      ) : (
-                        <button className="btn w-16 btn-primary">
-                          Pending
-                        </button>
-                      )}
-                    </TableCell>
+                  <TableCell align="left">
+                        {row.status === "inprogress" ? (
+                          <div className="flex flex-col gap-2">
+                            <button
+                              className="btn w-16 btn-success"
+                              onClick={() => handleDoneRequest(row)}
+                            >
+                              Done
+                            </button>
+                            <button
+                              className="btn w-16 btn-accent"
+                              onClick={() => handleCancelRequest(row)}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        ) : row.status === "done" ? (
+                          <button className="btn w-16">Done</button>
+                        ) : row.status === "cancel" ? (
+                          <button className="btn w-16">Cancel</button>
+                        ) : (
+                          <button className="btn w-16">Pending</button>
+                        )}
+                      </TableCell>
                     <TableCell align="left">{row.hospitalName}</TableCell>
                     {row.status === "inprogress" ? (
                       <>
@@ -234,15 +299,11 @@ const MyRequest = () => {
                       </button>
                     </TableCell>
                     <TableCell align="left">
-                      {row?.status === "inprogress" ? (
-                        "InProgress"
-                      ) : (
-                        <Link to={`/donationDetails/${row._id}`}>
-                          <button className="btn btn-accent text-white">
-                            View
-                          </button>
-                        </Link>
-                      )}
+                      <Link to={`/donationDetails/${row._id}`}>
+                        <button className="btn btn-accent text-white">
+                          View
+                        </button>
+                      </Link>
                     </TableCell>
                   </TableRow>
                 ))}

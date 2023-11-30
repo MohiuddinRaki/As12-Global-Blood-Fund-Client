@@ -51,7 +51,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "funding",
-        element: <Funding></Funding>,
+        element: (
+          <PrivateRoute>
+            <Funding></Funding>
+          </PrivateRoute>
+        ),
       },
       {
         path: "login",
@@ -75,7 +79,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "donationDetails/:id",
-        element: <DonationDetails></DonationDetails>,
+        element: (
+          <PrivateRoute>
+            <DonationDetails></DonationDetails>
+          </PrivateRoute>
+        ),
       },
     ],
   },
@@ -89,10 +97,10 @@ export const router = createBrowserRouter([
     ),
     children: [
       // for donor Route:
-      // {
-      //   index: true,
-      //   element: <DashboardDonor></DashboardDonor>,
-      // },
+      {
+        index: true,
+        element: <DashboardDonor></DashboardDonor>,
+      },
       {
         path: "profile",
         element: <DonorProfile></DonorProfile>,
@@ -125,34 +133,34 @@ export const router = createBrowserRouter([
       },
 
       // admin route:
-      // {
-      //   index: true,
-      //   element: <DashboardAdmin></DashboardAdmin>,
-      // },
-      // {
-      //   path: "adminprofile",
-      //   element: <AdminProfile></AdminProfile>,
-      // },
-      // {
-      //   path: "allUsers",
-      //   element: <AllUsers></AllUsers>,
-      // },
-      // {
-      //   path: "all-blood-donation-request",
-      //   element: <AllDonationRequest></AllDonationRequest>,
-      // },
-      // {
-      //   path: "content-management",
-      //   element: <ContentManagement></ContentManagement>,
-      // },
-      // {
-      //   path: "content-management/add-blog",
-      //   element: <AddBlog></AddBlog>,
-      // },
-      // {
-      //   path: "content-management/add-blog/:id",
-      //   element: <UpdateBlog></UpdateBlog>,
-      // },
+      {
+        index: true,
+        element: <DashboardAdmin></DashboardAdmin>,
+      },
+      {
+        path: "adminprofile",
+        element: <AdminProfile></AdminProfile>,
+      },
+      {
+        path: "allUsers",
+        element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "all-blood-donation-request",
+        element: <AllDonationRequest></AllDonationRequest>,
+      },
+      {
+        path: "content-management",
+        element: <ContentManagement></ContentManagement>,
+      },
+      {
+        path: "content-management/add-blog",
+        element: <AddBlog></AddBlog>,
+      },
+      {
+        path: "content-management/add-blog/:id",
+        element: <UpdateBlog></UpdateBlog>,
+      },
 
       // Volunteer Route:
 

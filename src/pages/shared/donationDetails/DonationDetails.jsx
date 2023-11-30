@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 const DonationDetails = () => {
   const [createRequest, refetch] = UseDonorRequest();
   const axiosSecure = UseAxiosSecure();
-  const naviGate = useNavigate()
+  const naviGate = useNavigate();
   const { id } = useParams();
   const singlePendingRequest = createRequest.find(
     (singleRequest) => singleRequest._id === id
@@ -55,7 +55,7 @@ const DonationDetails = () => {
         timer: 1500,
       });
     }
-    naviGate("/donationRequest")
+    naviGate("/donationRequest");
   };
 
   return (
@@ -111,12 +111,18 @@ const DonationDetails = () => {
             </h2>
           </div>
           {/* Open the modal using document.getElementById('ID').showModal() method */}
-          <button
-            className="btn"
-            onClick={() => document.getElementById("my_modal_5").showModal()}
-          >
-            DONATE
-          </button>
+          {singlePendingRequest.status === "pending" ? (
+            <button
+              className="btn"
+              onClick={() => document.getElementById("my_modal_5").showModal()}
+            >
+              DONATE
+            </button>
+          ) : (
+            <span className="mx-auto items-center text-4xl border w-max p-3 text-orange-500 font-medium">
+              allReady This request inProgress
+            </span>
+          )}
           <dialog
             id="my_modal_5"
             className="modal modal-bottom sm:modal-middle"
