@@ -121,16 +121,26 @@ const AllDonationRequest = () => {
                         {row.recipientName}
                       </TableCell>
                       <TableCell align="left">
-                        <select
-                          defaultValue="default"
-                          className="select select-bordered"
-                        >
-                          <option disabled value="default">
-                            select status
-                          </option>
-                          <option value={row.status}>{row.status}</option>
-                          <option value={row.status}>{row.status}</option>
-                        </select>
+                        {row.status === "inprogress" ? (
+                          <div className="flex flex-col gap-2">
+                            <button
+                              className="btn w-16 btn-success"
+                              // onClick={() => handleDoneRequest(row)}
+                            >
+                              Done
+                            </button>
+                            <button
+                              className="btn w-16 btn-accent"
+                              // onClick={() => handleCancelRequest(row)}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        ) : (
+                          <button className="btn w-16 btn-primary">
+                            Pending
+                          </button>
+                        )}
                       </TableCell>
                       <TableCell align="left">{row.hospitalName}</TableCell>
                       <TableCell align="left">
@@ -154,9 +164,15 @@ const AllDonationRequest = () => {
                         </button>
                       </TableCell>
                       <TableCell align="left">
-                        <button className="btn btn-accent text-white">
-                          View
-                        </button>
+                        {row?.status === "inprogress" ? (
+                          "InProgress"
+                        ) : (
+                          <Link to={`/donationDetails/${row._id}`}>
+                            <button className="btn btn-accent text-white">
+                              View
+                            </button>
+                          </Link>
+                        )}
                       </TableCell>
                     </TableRow>
                   ))}

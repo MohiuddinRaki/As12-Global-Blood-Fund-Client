@@ -234,11 +234,15 @@ const MyRequest = () => {
                       </button>
                     </TableCell>
                     <TableCell align="left">
-                      <Link to={`/donationDetails/${row._id}`}>
-                        <button className="btn btn-accent text-white">
-                          View
-                        </button>
-                      </Link>
+                      {row?.status === "inprogress" ? (
+                        "InProgress"
+                      ) : (
+                        <Link to={`/donationDetails/${row._id}`}>
+                          <button className="btn btn-accent text-white">
+                            View
+                          </button>
+                        </Link>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}

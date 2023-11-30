@@ -17,7 +17,7 @@ import UseAuth from "../../../../hooks/UseAuth";
 
 const AllDonationRequestV = () => {
   const [createRequest] = UseDonorRequest();
-//   const axiosSecure = UseAxiosSecure();
+  //   const axiosSecure = UseAxiosSecure();
   const createRequestLength = createRequest.length > 0;
   const { user } = UseAuth();
 
@@ -33,32 +33,32 @@ const AllDonationRequestV = () => {
     setPage(0);
   };
 
-//   const handleDeleteItem = (item) => {
-//     Swal.fire({
-//       title: "Are you sure?",
-//       text: "You won't be able to revert this!",
-//       icon: "warning",
-//       showCancelButton: true,
-//       confirmButtonColor: "#3085d6",
-//       cancelButtonColor: "#d33",
-//       confirmButtonText: "Yes, delete it!",
-//     }).then(async (result) => {
-//       if (result.isConfirmed) {
-//         const res = await axiosSecure.delete(
-//           `/donatorCreateRequest/${item._id}`
-//         );
-//         if (res.data.deletedCount > 0) {
-//           refetch();
-//           Swal.fire({
-//             title: "Deleted!",
-//             text: "Your request has been deleted.",
-//             icon: "success",
-//           });
-//         }
-//         console.log(res.data);
-//       }
-//     });
-//   };
+  //   const handleDeleteItem = (item) => {
+  //     Swal.fire({
+  //       title: "Are you sure?",
+  //       text: "You won't be able to revert this!",
+  //       icon: "warning",
+  //       showCancelButton: true,
+  //       confirmButtonColor: "#3085d6",
+  //       cancelButtonColor: "#d33",
+  //       confirmButtonText: "Yes, delete it!",
+  //     }).then(async (result) => {
+  //       if (result.isConfirmed) {
+  //         const res = await axiosSecure.delete(
+  //           `/donatorCreateRequest/${item._id}`
+  //         );
+  //         if (res.data.deletedCount > 0) {
+  //           refetch();
+  //           Swal.fire({
+  //             title: "Deleted!",
+  //             text: "Your request has been deleted.",
+  //             icon: "success",
+  //           });
+  //         }
+  //         console.log(res.data);
+  //       }
+  //     });
+  //   };
 
   return (
     <>
@@ -82,16 +82,27 @@ const AllDonationRequestV = () => {
                     <span className="text-lg text-red-500">recipient name</span>
                   </TableCell>
                   <TableCell>
-                    <span className="text-lg text-red-500">donor status</span>
+                    <span className="text-lg text-red-500">
+                      donation status
+                    </span>
                   </TableCell>
                   <TableCell>
                     <span className="text-lg text-red-500">hospital name</span>
                   </TableCell>
-                  <TableCell align="left">
+                  <TableCell>
+                    <span className="text-lg text-red-500">Location</span>
+                  </TableCell>
+                  <TableCell>
+                    <span className="text-lg text-red-500">Donor name</span>
+                  </TableCell>
+                  <TableCell>
+                    <span className="text-lg text-red-500">Donor Email</span>
+                  </TableCell>
+                  {/* <TableCell align="left">
                     <span className="text-lg text-red-500">
                       recipient loaction
                     </span>
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell align="left">
                     <span className="text-lg text-red-500">donation date</span>
                   </TableCell>
@@ -121,21 +132,46 @@ const AllDonationRequestV = () => {
                         {row.recipientName}
                       </TableCell>
                       <TableCell align="left">
-                        <select
-                          defaultValue="default"
-                          className="select select-bordered"
-                        >
-                          <option disabled value="default">
-                            select status
-                          </option>
-                          <option value={row.status}>{row.status}</option>
-                          <option value={row.status}>{row.status}</option>
-                        </select>
+                        {row.status === "inprogress" ? (
+                          <div className="flex flex-col gap-2">
+                            <button
+                              className="btn w-16 btn-success"
+                              // onClick={() => handleDoneRequest(row)}
+                            >
+                              Done
+                            </button>
+                            <button
+                              className="btn w-16 btn-accent"
+                              // onClick={() => handleCancelRequest(row)}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        ) : (
+                          <button className="btn w-16 btn-primary">
+                            Pending
+                          </button>
+                        )}
                       </TableCell>
                       <TableCell align="left">{row.hospitalName}</TableCell>
                       <TableCell align="left">
                         {row.recipientUpazila},{row.recipientDistrict}
                       </TableCell>
+                      {row.status === "inprogress" ? (
+                        <>
+                          <TableCell align="left">
+                            {row.requesterName}
+                          </TableCell>
+                          <TableCell align="left">
+                            {row.requesterEmail}
+                          </TableCell>
+                        </>
+                      ) : (
+                        <>
+                          <TableCell align="left">request is pending</TableCell>
+                          <TableCell align="left">request is pending</TableCell>
+                        </>
+                      )}
                       <TableCell align="left">{row.donationDate}</TableCell>
                       <TableCell align="left">{row.donationTime}</TableCell>
                       {/* <TableCell align="left">

@@ -44,8 +44,8 @@ const Dashboard = () => {
     (blckUser) => blckUser.email === user.email
   );
 
-  const isAdmin = true;
-  const isVolunteer = false;
+  const isAdmin = false;
+  const isVolunteer = true;
 
   return (
     <>
