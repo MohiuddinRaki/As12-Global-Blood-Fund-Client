@@ -104,80 +104,114 @@ const AllUsers = () => {
       });
     }
   };
-  const handleAdmin = async (donor) => {
-    //  send data to the server:
-    const name = donor.name;
-    const email = donor.email;
-    const district = donor.district;
-    const upazila = donor.upazila;
-    const blodGroup = donor.blodGroup;
-    const image = donor.image;
-    const role = "admin";
-    const status = donor.status;
-    const userInfo = {
-      name,
-      email,
-      district,
-      upazila,
-      blodGroup,
-      image,
-      role,
-      status,
-    };
+  // const handleAdmin = async (donor) => {
+  //   //  send data to the server:
+  //   const name = donor.name;
+  //   const email = donor.email;
+  //   const district = donor.district;
+  //   const upazila = donor.upazila;
+  //   const blodGroup = donor.blodGroup;
+  //   const image = donor.image;
+  //   const role = "admin";
+  //   const status = donor.status;
+  //   const userInfo = {
+  //     name,
+  //     email,
+  //     district,
+  //     upazila,
+  //     blodGroup,
+  //     image,
+  //     role,
+  //     status,
+  //   };
 
-    const meniRes = await axiosSecure.put(
-      `/dashboard/donationUsers/${donor?._id}`,
-      userInfo
-    );
-    console.log(meniRes.data);
-    if (meniRes.data.modifiedCount > 0) {
-      refetch();
-      Swal.fire({
-        position: "top",
-        icon: "success",
-        title: `now ${donor?.name} is an admin`,
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
-  };
-  const handleVolunteer = async (donor) => {
-    //  send data to the server:
-    const name = donor.name;
-    const email = donor.email;
-    const district = donor.district;
-    const upazila = donor.upazila;
-    const blodGroup = donor.blodGroup;
-    const image = donor.image;
-    const role = "volunteer";
-    const status = donor.status;
-    const userInfo = {
-      name,
-      email,
-      district,
-      upazila,
-      blodGroup,
-      image,
-      role,
-      status,
-    };
+  //   const meniRes = await axiosSecure.put(
+  //     `/dashboard/donationUsers/${donor?._id}`,
+  //     userInfo
+  //   );
+  //   console.log(meniRes.data);
+  //   if (meniRes.data.modifiedCount > 0) {
+  //     refetch();
+  //     Swal.fire({
+  //       position: "top",
+  //       icon: "success",
+  //       title: `now ${donor?.name} is an admin`,
+  //       showConfirmButton: false,
+  //       timer: 1500,
+  //     });
+  //   }
+  // };
 
-    const meniRes = await axiosSecure.put(
-      `/dashboard/donationUsers/${donor?._id}`,
-      userInfo
-    );
-    console.log(meniRes.data);
-    if (meniRes.data.modifiedCount > 0) {
-      refetch();
-      Swal.fire({
-        position: "top",
-        icon: "success",
-        title: `now ${donor?.name} is a Volunteer`,
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    }
+  const handleAdmin = (user) => {
+    axiosSecure.patch(`/dashboard/donationUsers/${user._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: `${user?.name} is an admin now`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
+
+  const handleVolunteer = (user) => {
+    axiosSecure.patch(`/dashboard/donationUser/${user?._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: `${user?.name} is a volunteer now`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
+
+  // const handleVolunteer = async (donor) => {
+  //   //  send data to the server:
+  //   const name = donor.name;
+  //   const email = donor.email;
+  //   const district = donor.district;
+  //   const upazila = donor.upazila;
+  //   const blodGroup = donor.blodGroup;
+  //   const image = donor.image;
+  //   const role = "volunteer";
+  //   const status = donor.status;
+  //   const userInfo = {
+  //     name,
+  //     email,
+  //     district,
+  //     upazila,
+  //     blodGroup,
+  //     image,
+  //     role,
+  //     status,
+  //   };
+
+  //   const meniRes = await axiosSecure.put(
+  //     `/dashboard/donationUsers/${donor?._id}`,
+  //     userInfo
+  //   );
+  //   console.log(meniRes.data);
+  //   if (meniRes.data.modifiedCount > 0) {
+  //     refetch();
+  //     Swal.fire({
+  //       position: "top",
+  //       icon: "success",
+  //       title: `now ${donor?.name} is a Volunteer`,
+  //       showConfirmButton: false,
+  //       timer: 1500,
+  //     });
+  //   }
+  // };
 
   return (
     <>
@@ -185,7 +219,6 @@ const AllUsers = () => {
         <Helmet>
           <title>Global Blood Fund | Dashboard | My Request</title>
         </Helmet>
-
         <h2 className="text-center">
           <span className="text-4xl font-medium">
             <span className="text-green-500">
@@ -202,7 +235,7 @@ const AllUsers = () => {
                     avatar
                   </span>
                 </TableCell>
-                <TableCell className="left">
+                <TableCell align="left">
                   <span className="text-xl font-semibold text-red-500">
                     name
                   </span>

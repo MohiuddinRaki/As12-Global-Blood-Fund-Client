@@ -227,9 +227,13 @@ const AllDonationRequest = () => {
                         ) : row.status === "done" ? (
                           <button className="btn w-16">Done</button>
                         ) : row.status === "cancel" ? (
-                          <button className="btn w-16">Cancel</button>
+                          <button className="btn w-16">
+                            Cancel
+                          </button>
                         ) : (
-                          <button className="btn w-16">Pending</button>
+                          <button className="btn w-16">
+                            Pending
+                          </button>
                         )}
                       </TableCell>
                       <TableCell align="left">{row.hospitalName}</TableCell>

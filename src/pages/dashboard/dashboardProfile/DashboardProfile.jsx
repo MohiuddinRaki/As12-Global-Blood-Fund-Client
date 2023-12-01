@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import UseAuth from "../../../../hooks/UseAuth";
-import UseUserInfo from "../../../../hooks/UseUserInfo";
 import { Helmet } from "react-helmet-async";
+import UseAuth from "../../../hooks/UseAuth";
+import UseUserInfo from "../../../hooks/UseUserInfo";
 
-const DonorProfile = () => {
+const DashboardProfile = () => {
   const { user } = UseAuth();
   const [userInfo] = UseUserInfo();
   const singleUserInfo = userInfo.find(
@@ -13,7 +13,7 @@ const DonorProfile = () => {
   return (
     <>
       <Helmet>
-        <title>Global Blood Fund | Dashboard | DonorProfile</title>
+        <title>Global Blood Fund | Dashboard | Profile</title>
       </Helmet>
       <div className="bg-[#701c45] w-full">
         <div>
@@ -52,4 +52,4 @@ const DonorProfile = () => {
   );
 };
 
-export default DonorProfile;
+export default DashboardProfile;

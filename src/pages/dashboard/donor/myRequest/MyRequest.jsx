@@ -150,7 +150,7 @@ const MyRequest = () => {
       });
     }
   };
-
+  
   // const handleCancelRequest = (item) => {
   //   Swal.fire({
   //     title: "Are you sure?",
@@ -242,30 +242,28 @@ const MyRequest = () => {
                     <TableCell component="th" scope="row">
                       {row.recipientName}
                     </TableCell>
-                  <TableCell align="left">
-                        {row.status === "inprogress" ? (
-                          <div className="flex flex-col gap-2">
-                            <button
-                              className="btn w-16 btn-success"
-                              onClick={() => handleDoneRequest(row)}
-                            >
-                              Done
-                            </button>
-                            <button
-                              className="btn w-16 btn-accent"
-                              onClick={() => handleCancelRequest(row)}
-                            >
-                              Cancel
-                            </button>
-                          </div>
-                        ) : row.status === "done" ? (
-                          <button className="btn w-16">Done</button>
-                        ) : row.status === "cancel" ? (
-                          <button className="btn w-16">Cancel</button>
-                        ) : (
-                          <button className="btn w-16">Pending</button>
-                        )}
-                      </TableCell>
+                    <TableCell align="left">
+                      {row.status === "inprogress" ? (
+                        <div className="flex flex-col gap-2">
+                          <button
+                            className="btn w-16 btn-success"
+                            onClick={() => handleDoneRequest(row)}
+                          >
+                            Done
+                          </button>
+                          <button
+                            className="btn w-16 btn-accent"
+                            onClick={() => handleCancelRequest(row)}
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      ) : (
+                        <button className="btn w-16 btn-primary">
+                          Pending
+                        </button>
+                      )}
+                    </TableCell>
                     <TableCell align="left">{row.hospitalName}</TableCell>
                     {row.status === "inprogress" ? (
                       <>

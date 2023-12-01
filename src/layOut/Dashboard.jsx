@@ -3,49 +3,15 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import "./dashboard.css";
 import UseAuth from "../hooks/UseAuth";
 import UseUserInfo from "../hooks/UseUserInfo";
-// import useAdmin from "../hooks/useAdmin";
-
-// const Dashboard = () => {
-//   return (
-//     <div>
-//       <Helmet>
-//         <title>Global Blood Fund || Dashboard</title>
-//       </Helmet>
-//       <h2>this is Dashboard page</h2>
-//     </div>
-//   );
-// };
-
-// export default Dashboard;
-
-// import {
-//   FaAd,
-//   FaBook,
-//   FaEnvelope,
-//   FaHistory,
-//   FaHome,
-//   FaList,
-//   FaSearch,
-//   FaShoppingCart,
-//   FaUser,
-//   FaUtensils,
-// } from "react-icons/fa";
-// import { NavLink, Outlet } from "react-router-dom";
-// import useCart from "../hooks/useCart";
-// import useAdmin from "../hooks/useAdmin";
+import useAdmin from "../hooks/useAdmin";
+import UseVolunteer from "../hooks/UseVolunteer";
 
 const Dashboard = () => {
-  // const [cart] = useCart();
-  // // ToDo: get isadmin value from the database:
-  // const [isAdmin] = useAdmin();
+  const [isAdmin] = useAdmin();
+  const [isVolunteer] = UseVolunteer()
   const { user, logOutUser } = UseAuth();
   const [userInfo] = UseUserInfo();
-  const blockUser = userInfo.find(
-    (blckUser) => blckUser.email === user.email
-  );
-
-  const isAdmin = false;
-  const isVolunteer = true;
+  const blockUser = userInfo.find((blckUser) => blckUser.email === user.email);
 
   return (
     <>
@@ -61,7 +27,7 @@ const Dashboard = () => {
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
                 <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
-                  <NavLink to="/dashboard/adminprofile">
+                  <NavLink to="/dashboard/profile">
                     {/* <FaHome></FaHome> */}
                     Profile
                   </NavLink>
@@ -92,12 +58,11 @@ const Dashboard = () => {
                     Home
                   </NavLink>
                 </li>
-                <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
+                {/* <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
                   <NavLink to="/dashboard/contact">
-                    {/* <FaSearch></FaSearch> */}
                     Contact
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/">
                     <button
@@ -148,12 +113,11 @@ const Dashboard = () => {
                     Home
                   </NavLink>
                 </li>
-                <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
+                {/* <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
                   <NavLink to="/dashboard/contact">
-                    {/* <FaSearch></FaSearch> */}
                     Contact
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/">
                     <button
@@ -206,12 +170,11 @@ const Dashboard = () => {
                     Home
                   </NavLink>
                 </li>
-                <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
+                {/* <li className="text-[#ed1b2f] mt-3 font-medium text-xl">
                   <NavLink to="/dashboard/contact">
-                    {/* <FaSearch></FaSearch> */}
                     Contact
                   </NavLink>
-                </li>
+                </li> */}
                 <li>
                   <Link to="/">
                     <button

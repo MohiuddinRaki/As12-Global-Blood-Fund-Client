@@ -140,7 +140,7 @@ const DashboardDonor = () => {
   return (
     <>
       <Helmet>
-        <title>Global Blood Fund | Dashboard | My Request</title>
+        <title>Global Blood Fund | Dashboard</title>
       </Helmet>
       <>
         {showRequestCondition ? (

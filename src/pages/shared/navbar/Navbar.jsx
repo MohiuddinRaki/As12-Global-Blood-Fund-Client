@@ -22,18 +22,6 @@ const Navbar = () => {
       <li className="text-lg font-medium text-teal-500 lg:text-[#ed1b2f]">
         <NavLink to="/funding">Fund</NavLink>
       </li>
-      {/* <li className="text-lg font-medium text-teal-500 lg:text-white">
-        <NavLink to="/addBlog">Add Blog</NavLink>
-      </li> */}
-      {/* <li className="text-lg font-medium text-teal-500 lg:text-white">
-        <NavLink to="/allBlogs">All Blogs</NavLink>
-      </li> */}
-      {/* <li className="text-lg font-medium text-teal-500 lg:text-white">
-        <NavLink to="/featuredBlogs">Featured</NavLink>
-      </li> */}
-      {/* <li className="text-lg font-medium text-teal-500 lg:text-white">
-        <NavLink to={`/wishlist/${user?.email}`}>Wishlist</NavLink>
-      </li> */}
       <li className="text-lg font-medium text-teal-500 lg:text-[#ed1b2f]">
         <NavLink to="/login">Login</NavLink>
       </li>

@@ -10,20 +10,16 @@ import Dashboard from "../layOut/Dashboard";
 import Funding from "../pages/shared/funding/Funding";
 import PrivacyPolicy from "../pages/shared/privacyPolicy/PrivacyPolicy";
 import ContactUsF from "../pages/shared/contactUsF/ContactUsF";
-import DonorProfile from "../pages/dashboard/donor/donorProfile/DonorProfile";
 import CreateRequest from "../pages/dashboard/donor/createRequest/CreateRequest";
 import MyRequest from "../pages/dashboard/donor/myRequest/MyRequest";
 import DonorContact from "../pages/dashboard/donor/donorContact/DonorContact";
 import DonorUpdateForm from "../component/donorUpdate/DonorUpdateForm";
-import DashboardDonor from "../pages/dashboard/donor/dashboardDonor/DashboardDonor";
 import DonorRequestUpdate from "../pages/dashboard/donor/donorRequestUpdate/DonorRequestUpdate";
 import AllUsers from "../pages/dashboard/admin/allUsers/AllUsers";
 import AllDonationRequest from "../pages/dashboard/admin/allDonationRequest/AllDonationRequest";
 import ContentManagement from "../pages/dashboard/admin/contentManagement/ContentManagement";
 import AddBlog from "../pages/dashboard/admin/addBlog/AddBlog";
 import UpdateBlog from "../pages/dashboard/admin/updateBlog/UpdateBlog";
-import AdminProfile from "../pages/dashboard/admin/adminProfile/AdminProfile";
-import DashboardAdmin from "../pages/dashboard/admin/dashboardAdmin/DashboardAdmin";
 import DashboardVolunter from "../pages/dashboard/volunteer/dashboardVolunter/DashboardVolunter";
 import VContentManagement from "../pages/dashboard/volunteer/contentManagement/VContentManagement";
 import AllDonationRequestV from "../pages/dashboard/volunteer/allDonationRequestV/AllDonationRequestV";
@@ -31,6 +27,9 @@ import AddBlogV from "../pages/dashboard/volunteer/addBlog/AddBlogV";
 import UpdateBlogV from "../pages/dashboard/volunteer/updateBlog/UpdateBlogV";
 import DonorSearchPage from "../pages/shared/donorSearchPage/DonorSearchPage";
 import DonationDetails from "../pages/shared/donationDetails/DonationDetails";
+import AdminRoute from "./AdminRoute";
+import DashboardWelCome from "../pages/dashboard/dashboardWelcome/DashboardWelCome";
+import DashboardProfile from "../pages/dashboard/dashboardProfile/DashboardProfile";
 
 export const router = createBrowserRouter([
   {
@@ -87,7 +86,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  // for dashboard:
+  // For Dashboard Route:
   {
     path: "dashboard",
     element: (
@@ -96,15 +95,16 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-      // for donor Route:
+      // Common Route:
       {
         index: true,
-        element: <DashboardDonor></DashboardDonor>,
+        element: <DashboardWelCome></DashboardWelCome>,
       },
       {
         path: "profile",
-        element: <DonorProfile></DonorProfile>,
+        element: <DashboardProfile></DashboardProfile>,
       },
+      // For Donor Route:
       {
         path: "create-donation-request",
         element: <CreateRequest></CreateRequest>,
@@ -120,27 +120,15 @@ export const router = createBrowserRouter([
       {
         path: "donationUsers/:id",
         element: <DonorUpdateForm></DonorUpdateForm>,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/dashboard/donationUsers/${params.id}`),
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:5000/dashboard/donationUsers/${params.id}`),
       },
       {
         path: "donatorCreateRequest/:id",
         element: <DonorRequestUpdate></DonorRequestUpdate>,
-        // loader: ({ params }) =>
-        //   fetch(
-        //     `http://localhost:5000/dashboard/donatorCreateRequest/${params.id}`
-        //   ),
       },
 
-      // admin route:
-      {
-        index: true,
-        element: <DashboardAdmin></DashboardAdmin>,
-      },
-      {
-        path: "adminprofile",
-        element: <AdminProfile></AdminProfile>,
-      },
+      // For admin route:
       {
         path: "allUsers",
         element: <AllUsers></AllUsers>,
@@ -162,12 +150,11 @@ export const router = createBrowserRouter([
         element: <UpdateBlog></UpdateBlog>,
       },
 
-      // Volunteer Route:
-
-      {
-        index: true,
-        element: <DashboardVolunter></DashboardVolunter>,
-      },
+      // For Volunteer Route:
+      // {
+      //   index: true,
+      //   element: <DashboardVolunter></DashboardVolunter>,
+      // },
       {
         path: "content-management",
         element: <VContentManagement></VContentManagement>,
@@ -184,28 +171,106 @@ export const router = createBrowserRouter([
         path: "content-management/add-blog/:id",
         element: <UpdateBlogV></UpdateBlogV>,
       },
-
-      // {
-      //   path: "addItems",
-      //   element: (
-      //     <AdminRout>
-      //       <AddItems></AddItems>
-      //     </AdminRout>
-      //   ),
-      // },
-      // {
-      //   path: "manageItems",
-      //   element: (
-      //     <AdminRout>
-      //       <ManageItems></ManageItems>
-      //     </AdminRout>
-      //   ),
-      // },
-      // {
-      //   path: "updateItem/:id",
-      //   element: <AdminRout><UpdateItem></UpdateItem></AdminRout>,
-      //   loader: ({params}) => fetch(`http://localhost:5000/menu/${params.id}`)
-      // }
     ],
   },
 ]);
+
+// for dahsboarf:
+
+// {
+//   path: "/dashboard",
+//   element: <Dashboard></Dashboard>,
+//   errorElement: <Error></Error>,
+//   children: [
+//     {
+//       index: true,
+//       element: <DashboardWelcome></DashboardWelcome>,
+//     },
+//     {
+//       path: "/dashboard/profile",
+//       element: <DashboardProfile></DashboardProfile>,
+//     },
+//     {
+//       path: "/dashboard/create request",
+//       element: (
+//         <DonorRoute>
+//           <DonorDashboardCreateReq></DonorDashboardCreateReq>
+//         </DonorRoute>
+//       ),
+//     },
+//     {
+//       path: "/dashboard/my request",
+//       element: (
+//         <DonorRoute>
+//           <DonorMyReq></DonorMyReq>
+//         </DonorRoute>
+//       ),
+//     },
+//     {
+//       path: "/dashboard/editRequest/:id",
+//       element: <DonorEditReq></DonorEditReq>,
+//     },
+//     {
+//       path: "/dashboard/view Request/:id",
+//       element: (
+//         <DonorRoute>
+//           <DonorReqView></DonorReqView>
+//         </DonorRoute>
+//       ),
+//     },
+//     // adimn dashbaord start
+//     {
+//       path: "/dashboard/all users",
+//       element: (
+//         <AdminRoute>
+//           <AdminAllUsers></AdminAllUsers>
+//         </AdminRoute>
+//       ),
+//     },
+//     {
+//       path: "/dashboard/all donation request",
+//       element: (
+//         <AdminRoute>
+//           <AdminDonationReq></AdminDonationReq>
+//         </AdminRoute>
+//       ),
+//     },
+//     {
+//       path: "/dashboard/all donation request/:id",
+//       element: <DonorEditReq></DonorEditReq>,
+//     },
+//     {
+//       path: "/dashboard/content management",
+//       element: (
+//         <AdminRoute>
+//           <AdminContentManagement></AdminContentManagement>
+//         </AdminRoute>
+//       ),
+//     },
+//     {
+//       path: "/dashboard/content management/add blog",
+//       element: (
+//         <AdminRoute>
+//           <AdminAddBlog></AdminAddBlog>
+//         </AdminRoute>
+//       ),
+//     },
+//     // volunteer start
+//     {
+//       path: "/dashboard/all blood donation request",
+//       element: (
+//         <VolunteerRoute>
+//           <VolunteerAllDonationReq></VolunteerAllDonationReq>
+//         </VolunteerRoute>
+//       ),
+//     },
+//     {
+//       path: "/dashboard/volunteer content management",
+//       element: (
+//         <VolunteerRoute>
+//           <VolunteerContentManagement></VolunteerContentManagement>
+//         </VolunteerRoute>
+//       ),
+//     },
+//   ],
+// }

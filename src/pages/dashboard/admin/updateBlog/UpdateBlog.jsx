@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import UseAxiosSecure from "../../../../hooks/UseAxiosSecure";
 import UseAllBlogs from "../../../../hooks/UseAllBlogs";
 import Swal from "sweetalert2";
@@ -15,6 +15,7 @@ const UpdateBlog = () => {
   const axiosPublic = UseAxiosPublic();
   const [allBlogs] = UseAllBlogs();
   const singleBlogsInfo = allBlogs.find((singleBlog) => singleBlog._id === id);
+  const naviGate = useNavigate()
 
   const {
     register,
@@ -61,6 +62,7 @@ const UpdateBlog = () => {
         });
       }
     }
+    naviGate("/dashboard/content-management/add-blog")
   };
   return (
     <div>
