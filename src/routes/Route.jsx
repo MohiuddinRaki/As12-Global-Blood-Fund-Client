@@ -16,20 +16,22 @@ import DonorContact from "../pages/dashboard/donor/donorContact/DonorContact";
 import DonorUpdateForm from "../component/donorUpdate/DonorUpdateForm";
 import DonorRequestUpdate from "../pages/dashboard/donor/donorRequestUpdate/DonorRequestUpdate";
 import AllUsers from "../pages/dashboard/admin/allUsers/AllUsers";
-import AllDonationRequest from "../pages/dashboard/admin/allDonationRequest/AllDonationRequest";
-import ContentManagement from "../pages/dashboard/admin/contentManagement/ContentManagement";
+// import AllDonationRequest from "../pages/dashboard/admin/allDonationRequest/AllDonationRequest";
+// import ContentManagement from "../pages/dashboard/admin/contentManagement/ContentManagement";
 import AddBlog from "../pages/dashboard/admin/addBlog/AddBlog";
 import UpdateBlog from "../pages/dashboard/admin/updateBlog/UpdateBlog";
-import DashboardVolunter from "../pages/dashboard/volunteer/dashboardVolunter/DashboardVolunter";
-import VContentManagement from "../pages/dashboard/volunteer/contentManagement/VContentManagement";
-import AllDonationRequestV from "../pages/dashboard/volunteer/allDonationRequestV/AllDonationRequestV";
+// import DashboardVolunter from "../pages/dashboard/volunteer/dashboardVolunter/DashboardVolunter";
+// import VContentManagement from "../pages/dashboard/volunteer/contentManagement/VContentManagement";
+// import AllDonationRequestV from "../pages/dashboard/volunteer/allDonationRequestV/AllDonationRequestV";
 import AddBlogV from "../pages/dashboard/volunteer/addBlog/AddBlogV";
 import UpdateBlogV from "../pages/dashboard/volunteer/updateBlog/UpdateBlogV";
 import DonorSearchPage from "../pages/shared/donorSearchPage/DonorSearchPage";
 import DonationDetails from "../pages/shared/donationDetails/DonationDetails";
-import AdminRoute from "./AdminRoute";
+// import AdminRoute from "./AdminRoute";
 import DashboardWelCome from "../pages/dashboard/dashboardWelcome/DashboardWelCome";
 import DashboardProfile from "../pages/dashboard/dashboardProfile/DashboardProfile";
+import AllDonationRequest from "../pages/dashboard/commonDashboard/admin_volunteer/allDonationRequest/AllDonationRequset";
+import ContentManagement from "../pages/dashboard/commonDashboard/admin_volunteer/contentManagement/ContentManagement";
 
 export const router = createBrowserRouter([
   {
@@ -95,7 +97,7 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
-      // Common Route:
+      // all Common Route:
       {
         index: true,
         element: <DashboardWelCome></DashboardWelCome>,
@@ -104,6 +106,7 @@ export const router = createBrowserRouter([
         path: "profile",
         element: <DashboardProfile></DashboardProfile>,
       },
+      
       // For Donor Route:
       {
         path: "create-donation-request",
@@ -128,19 +131,28 @@ export const router = createBrowserRouter([
         element: <DonorRequestUpdate></DonorRequestUpdate>,
       },
 
-      // For admin route:
-      {
-        path: "allUsers",
-        element: <AllUsers></AllUsers>,
-      },
+      // For admin Volynteer route:
       {
         path: "all-blood-donation-request",
-        element: <AllDonationRequest></AllDonationRequest>,
+        element: <AllDonationRequest></AllDonationRequest>
       },
       {
         path: "content-management",
         element: <ContentManagement></ContentManagement>,
       },
+      // for admin Route:
+      {
+        path: "allUsers",
+        element: <AllUsers></AllUsers>,
+      },
+      // {
+      //   path: "all-blood-donation-request",
+      //   element: <AllDonationRequest></AllDonationRequest>,
+      // },
+      // {
+      //   path: "content-management",
+      //   element: <ContentManagement></ContentManagement>,
+      // },
       {
         path: "content-management/add-blog",
         element: <AddBlog></AddBlog>,
@@ -155,14 +167,14 @@ export const router = createBrowserRouter([
       //   index: true,
       //   element: <DashboardVolunter></DashboardVolunter>,
       // },
-      {
-        path: "content-management",
-        element: <VContentManagement></VContentManagement>,
-      },
-      {
-        path: "all-blood-donation-request",
-        element: <AllDonationRequestV></AllDonationRequestV>,
-      },
+      // {
+      //   path: "content-management",
+      //   element: <VContentManagement></VContentManagement>,
+      // },
+      // {
+      //   path: "all-blood-donation-request",
+      //   element: <AllDonationRequestV></AllDonationRequestV>,
+      // },
       {
         path: "content-management/add-blog",
         element: <AddBlogV></AddBlogV>,

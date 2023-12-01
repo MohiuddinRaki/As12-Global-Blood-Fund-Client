@@ -4,6 +4,7 @@ import UseAxiosSecure from "../../../../hooks/UseAxiosSecure";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import UseAuth from "../../../../hooks/UseAuth";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -11,6 +12,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const AddBlog = () => {
   const axiosSecure = UseAxiosSecure();
   const axiosPublic = UseAxiosPublic();
+  const { user } = UseAuth();
 
   const {
     register,
@@ -37,6 +39,7 @@ const AddBlog = () => {
         content,
         image,
         status: "draft",
+        email: user?.email
       };
       console.log(blogsContentInfo);
       axiosSecure.post("/adminAddBlog", blogsContentInfo).then((res) => {

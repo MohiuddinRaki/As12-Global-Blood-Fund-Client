@@ -12,10 +12,15 @@ import UseUserInfo from "../../../../hooks/UseUserInfo";
 import { FaUser } from "react-icons/fa";
 import UseAxiosSecure from "../../../../hooks/UseAxiosSecure";
 import Swal from "sweetalert2";
+import UseAuth from "../../../../hooks/UseAuth";
 
 const AllUsers = () => {
+  const { user } = UseAuth();
   const [userInfo, refetch] = UseUserInfo();
   const axiosSecure = UseAxiosSecure();
+  const loginUser = userInfo.find(
+    (loginUser) => loginUser?.email === user?.email
+  );
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -174,7 +179,6 @@ const AllUsers = () => {
     });
   };
 
-
   // const handleVolunteer = async (donor) => {
   //   //  send data to the server:
   //   const name = donor.name;
@@ -308,20 +312,26 @@ const AllUsers = () => {
                       </span>
                     </TableCell>
                     <TableCell component="th" scope="row">
-                      {row?.status === "active" ? (
-                        <button
-                          onClick={() => handleBlock(row)}
-                          className="btn btn-warning"
-                        >
-                          Block
-                        </button>
+                      {loginUser.email === row.email ? (
+                        <button className="btn btn-warning">User</button>
                       ) : (
-                        <button
-                          onClick={() => handleUnBlock(row)}
-                          className="btn btn-accent"
-                        >
-                          UnBlock
-                        </button>
+                        <>
+                          {row?.status === "active" ? (
+                            <button
+                              onClick={() => handleBlock(row)}
+                              className="btn btn-warning"
+                            >
+                              Block
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => handleUnBlock(row)}
+                              className="btn btn-accent"
+                            >
+                              UnBlock
+                            </button>
+                          )}
+                        </>
                       )}
                     </TableCell>
                     <TableCell component="th" scope="row">
@@ -378,59 +388,3 @@ const AllUsers = () => {
 };
 
 export default AllUsers;
-
-// const AllUsers = () => {
-//     return (
-//         <div>
-//         <div className="flex justify-evenly my-4">
-//           <h2 className="text-3xl">Manage All Users</h2>
-//         </div>
-//         <div className="overflow-x-auto">
-//           <h2 className="text-3xl my-5">Total Users: {users.length}</h2>
-//           <table className="table table-zebra">
-//             {/* head */}
-//             <thead>
-//               <tr>
-//                 <th>Number</th>
-//                 <th>Name</th>
-//                 <th>Email</th>
-//                 <th>Role</th>
-//                 <th>Action</th>
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {users.map((user, index) => (
-//                 <tr key={user._id}>
-//                   <th>{index + 1}</th>
-//                   <td>{user.name}</td>
-//                   <td>{user.email}</td>
-//                   <td>
-//                     {user?.role === "admin" ? (
-//                       "Admin"
-//                     ) : (
-//                       <button
-//                         onClick={() => handleMakeAdmin(user)}
-//                         className="btn btn-lg bg-orange-600"
-//                       >
-//                         <FaUser className="text-white text-2xl"></FaUser>
-//                       </button>
-//                     )}
-//                   </td>
-//                   <td>
-//                     <button
-//                       onClick={() => handleDeleteUser(user)}
-//                       className="btn btn-ghost btn-lg"
-//                     >
-//                       <FaTrash className="bg-red-600"></FaTrash>
-//                     </button>
-//                   </td>
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//         </div>
-//       </div>
-//     );
-// };
-
-// export default AllUsers;
