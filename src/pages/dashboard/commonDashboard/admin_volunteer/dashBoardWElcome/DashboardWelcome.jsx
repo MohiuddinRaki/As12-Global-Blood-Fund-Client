@@ -2,8 +2,8 @@
 // import UseUserInfo from "../../../../hooks/UseUserInfo";
 // import UseDonorRequest from "../../../../hooks/UseDonorRequest";
 // import UseAuth from "../../../../hooks/UseAuth";
-// const DashboardAdmin = () => {
-//   const {user} = UseAuth()
+// const DashboardWelcome = () => {
+//   const { user } = UseAuth();
 //   const [userInfo] = UseUserInfo();
 //   const [createRequest] = UseDonorRequest();
 //   return (
@@ -49,4 +49,4 @@
 //   );
 // };
 
-// export default DashboardAdmin;
+// export default DashboardWelcome;

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import UseAuth from "./UseAuth";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://b8a12-server-side-mohiuddin-raki.vercel.app'
 })
 const UseAxiosSecure = () => {
     const navigate = useNavigate();
@@ -48,7 +48,7 @@ export default UseAxiosSecure;
 // import UseAuth from "./UseAuth";
 
 // const axiosSecure = axios.create({
-//   baseURL: "http://localhost:5000", 
+//   baseURL: "https://b8a12-server-side-mohiuddin-raki.vercel.app", 
 // });
 // const UseAxiosSecure = () => {
 //   const navigate = useNavigate();

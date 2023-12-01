@@ -120,7 +120,7 @@ const DonationDetails = () => {
             </button>
           ) : (
             <span className="mx-auto items-center text-4xl border w-max p-3 text-orange-500 font-medium">
-              allReady This request inProgress
+              allReady This request is inProgress
             </span>
           )}
           <dialog

@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import useAdmin from "../../../../../hooks/useAdmin";
 import UseAuth from "../../../../../hooks/UseAuth";
-import UseUserInfo from "../../../../../hooks/UseUserInfo";
+// import UseUserInfo from "../../../../../hooks/UseUserInfo";
 import UseAxiosSecure from "../../../../../hooks/UseAxiosSecure";
 import UseAllBlogs from "../../../../../hooks/UseAllBlogs";
 import { useState } from "react";
@@ -13,10 +13,10 @@ import { useState } from "react";
 const ContentManagement = () => {
   const [isAdmin] = useAdmin();
   const { user } = UseAuth();
-  const [userInfo] = UseUserInfo();
-  const loginUser = userInfo.find(
-    (loginUser) => loginUser?.email === user?.email
-  );
+  // const [userInfo] = UseUserInfo();
+  // const loginUser = userInfo.find(
+  //   (loginUser) => loginUser?.email === user?.email
+  // );
   const axiosSecure = UseAxiosSecure();
   const [allBlogs, refetch] = UseAllBlogs();
   const [filterBlogs, setFilterBlogs] = useState(allBlogs);
@@ -215,7 +215,7 @@ const ContentManagement = () => {
                           <button>Update</button>
                         </Link>
                       </>
-                    ) : loginUser?.email === blog?.email &&
+                    ) : user?.email === blog?.email &&
                       blog.status === "draft" ? (
                       <>
                         <button

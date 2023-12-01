@@ -138,7 +138,9 @@ const DonationRequest = () => {
           </TableContainer>
         </div>
       ) : (
-        ""
+        <h1 className="text-6xl h-1/2 text-center my-44 font-bold text-rose-400">
+        There are No Pending Requests
+        </h1>
       )}
     </>
   );

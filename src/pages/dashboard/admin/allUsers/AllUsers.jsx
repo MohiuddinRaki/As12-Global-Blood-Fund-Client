@@ -18,9 +18,9 @@ const AllUsers = () => {
   const { user } = UseAuth();
   const [userInfo, refetch] = UseUserInfo();
   const axiosSecure = UseAxiosSecure();
-  const loginUser = userInfo.find(
-    (loginUser) => loginUser?.email === user?.email
-  );
+  // const loginUser = userInfo.find(
+  //   (loginUser) => loginUser?.email === user?.email
+  // );
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -312,7 +312,7 @@ const AllUsers = () => {
                       </span>
                     </TableCell>
                     <TableCell component="th" scope="row">
-                      {loginUser.email === row.email ? (
+                      {user?.email === row.email ? (
                         <button className="btn btn-warning">User</button>
                       ) : (
                         <>
@@ -351,7 +351,12 @@ const AllUsers = () => {
                       )}
                     </TableCell>
                     <TableCell component="th" scope="row">
-                      {row?.role === "volunteer" && row?.status === "active" ? (
+                      {user?.email === row.email ? (
+                        <button className="text-green-500 text-3xl">
+                          <FaUser></FaUser>
+                        </button>
+                      ) : row?.role === "volunteer" &&
+                        row?.status === "active" ? (
                         <span className="text-zinc-500 text-3xl">
                           volunteer
                         </span>
@@ -367,6 +372,24 @@ const AllUsers = () => {
                           <FaUser></FaUser>
                         </button>
                       )}
+
+                      {/* {
+                      row?.role === "volunteer" && row?.status === "active" ? (
+                        <span className="text-zinc-500 text-3xl">
+                          volunteer
+                        </span>
+                      ) : row?.status === "block" ? (
+                        <button className="text-green-500 text-3xl">
+                          <FaUser></FaUser>
+                        </button>
+                      ) : (
+                        <button
+                          onClick={() => handleVolunteer(row)}
+                          className="text-green-500 text-3xl"
+                        >
+                          <FaUser></FaUser>
+                        </button>
+                      )} */}
                     </TableCell>
                   </TableRow>
                 ))}

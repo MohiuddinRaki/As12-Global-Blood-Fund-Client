@@ -13,25 +13,24 @@ import ContactUsF from "../pages/shared/contactUsF/ContactUsF";
 import CreateRequest from "../pages/dashboard/donor/createRequest/CreateRequest";
 import MyRequest from "../pages/dashboard/donor/myRequest/MyRequest";
 import DonorContact from "../pages/dashboard/donor/donorContact/DonorContact";
-import DonorUpdateForm from "../component/donorUpdate/DonorUpdateForm";
+// import DonorUpdateForm from "../component/donorUpdate/DonorUpdateForm";
 import DonorRequestUpdate from "../pages/dashboard/donor/donorRequestUpdate/DonorRequestUpdate";
 import AllUsers from "../pages/dashboard/admin/allUsers/AllUsers";
-// import AllDonationRequest from "../pages/dashboard/admin/allDonationRequest/AllDonationRequest";
-// import ContentManagement from "../pages/dashboard/admin/contentManagement/ContentManagement";
-import AddBlog from "../pages/dashboard/admin/addBlog/AddBlog";
-import UpdateBlog from "../pages/dashboard/admin/updateBlog/UpdateBlog";
-// import DashboardVolunter from "../pages/dashboard/volunteer/dashboardVolunter/DashboardVolunter";
-// import VContentManagement from "../pages/dashboard/volunteer/contentManagement/VContentManagement";
-// import AllDonationRequestV from "../pages/dashboard/volunteer/allDonationRequestV/AllDonationRequestV";
-import AddBlogV from "../pages/dashboard/volunteer/addBlog/AddBlogV";
-import UpdateBlogV from "../pages/dashboard/volunteer/updateBlog/UpdateBlogV";
+// import AddBlog from "../pages/dashboard/admin/addBlog/AddBlog";
+// import UpdateBlog from "../pages/dashboard/admin/updateBlog/UpdateBlog";
+// import AddBlogV from "../pages/dashboard/volunteer/addBlog/AddBlogV";
+// import UpdateBlogV from "../pages/dashboard/volunteer/updateBlog/UpdateBlogV";
 import DonorSearchPage from "../pages/shared/donorSearchPage/DonorSearchPage";
 import DonationDetails from "../pages/shared/donationDetails/DonationDetails";
-// import AdminRoute from "./AdminRoute";
-import DashboardWelCome from "../pages/dashboard/dashboardWelcome/DashboardWelCome";
-import DashboardProfile from "../pages/dashboard/dashboardProfile/DashboardProfile";
+// import DashboardWelCome from "../pages/dashboard/dashboardWelcome/DashboardWelCome";
+// import DashboardProfile from "../pages/dashboard/dashboardProfile/DashboardProfile";
 import AllDonationRequest from "../pages/dashboard/commonDashboard/admin_volunteer/allDonationRequest/AllDonationRequset";
 import ContentManagement from "../pages/dashboard/commonDashboard/admin_volunteer/contentManagement/ContentManagement";
+import AddBlog from "../pages/dashboard/commonDashboard/admin_volunteer/addBlog/AddBlog";
+import UpdateBlog from "../pages/dashboard/commonDashboard/admin_volunteer/updateBlog/UpdateBlog";
+import DashboardProfile from "../pages/dashboard/commonDashboard/dashboardProfile/DashboardProfile";
+import DashboardWelCome from "../pages/dashboard/commonDashboard/dashboardWelcome/DashboardWelcome";
+import ProfileUpdate from "../pages/dashboard/commonDashboard/profileUpdate/ProfileUpdate";
 
 export const router = createBrowserRouter([
   {
@@ -106,6 +105,10 @@ export const router = createBrowserRouter([
         path: "profile",
         element: <DashboardProfile></DashboardProfile>,
       },
+      {
+        path: "donationUsers/:id",
+        element: <ProfileUpdate></ProfileUpdate>,
+      },
       
       // For Donor Route:
       {
@@ -120,18 +123,18 @@ export const router = createBrowserRouter([
         path: "contact",
         element: <DonorContact></DonorContact>,
       },
-      {
-        path: "donationUsers/:id",
-        element: <DonorUpdateForm></DonorUpdateForm>,
-        // loader: ({ params }) =>
-        //   fetch(`http://localhost:5000/dashboard/donationUsers/${params.id}`),
-      },
+      // {
+      //   path: "donationUsers/:id",
+      //   element: <DonorUpdateForm></DonorUpdateForm>,
+      //   // loader: ({ params }) =>
+      //   //   fetch(`https://b8a12-server-side-mohiuddin-raki.vercel.app/dashboard/donationUsers/${params.id}`),
+      // },
       {
         path: "donatorCreateRequest/:id",
         element: <DonorRequestUpdate></DonorRequestUpdate>,
       },
 
-      // For admin Volynteer route:
+      // For admin and Volunteer route:
       {
         path: "all-blood-donation-request",
         element: <AllDonationRequest></AllDonationRequest>
@@ -140,6 +143,16 @@ export const router = createBrowserRouter([
         path: "content-management",
         element: <ContentManagement></ContentManagement>,
       },
+         {
+        path: "content-management/add-blog",
+        element: <AddBlog></AddBlog>,
+      },
+      {
+        path: "content-management/add-blog/:id",
+        element: <UpdateBlog></UpdateBlog>
+      },
+
+
       // for admin Route:
       {
         path: "allUsers",
@@ -153,14 +166,14 @@ export const router = createBrowserRouter([
       //   path: "content-management",
       //   element: <ContentManagement></ContentManagement>,
       // },
-      {
-        path: "content-management/add-blog",
-        element: <AddBlog></AddBlog>,
-      },
-      {
-        path: "content-management/add-blog/:id",
-        element: <UpdateBlog></UpdateBlog>,
-      },
+      // {
+      //   path: "content-management/add-blog",
+      //   element: <AddBlog></AddBlog>,
+      // },
+      // {
+      //   path: "content-management/add-blog/:id",
+      //   element: <UpdateBlog></UpdateBlog>,
+      // },
 
       // For Volunteer Route:
       // {
@@ -175,14 +188,14 @@ export const router = createBrowserRouter([
       //   path: "all-blood-donation-request",
       //   element: <AllDonationRequestV></AllDonationRequestV>,
       // },
-      {
-        path: "content-management/add-blog",
-        element: <AddBlogV></AddBlogV>,
-      },
-      {
-        path: "content-management/add-blog/:id",
-        element: <UpdateBlogV></UpdateBlogV>,
-      },
+      // {
+      //   path: "content-management/add-blog",
+      //   element: <AddBlogV></AddBlogV>,
+      // },
+      // {
+      //   path: "content-management/add-blog/:id",
+      //   element: <UpdateBlogV></UpdateBlogV>,
+      // },
     ],
   },
 ]);

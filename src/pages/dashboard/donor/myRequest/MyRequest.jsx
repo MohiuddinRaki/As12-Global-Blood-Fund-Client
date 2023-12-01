@@ -21,6 +21,7 @@ const MyRequest = () => {
   const specifyUserRequest = createRequest.filter(
     (specifyUser) => specifyUser.requesterEmail === user.email
   );
+  const [filterDonations, serFilterDonations] = useState(specifyUserRequest);
 
   const createRequestLength = specifyUserRequest.length > 0;
 
@@ -34,6 +35,13 @@ const MyRequest = () => {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
+  };
+  const handleSearchCaetegory = (event) => {
+    const filteringDonations = filterDonations.filter((donor) =>
+      donor.status.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+    serFilterDonations(filteringDonations);
+    refetch();
   };
 
   const handleDeleteItem = (item) => {
@@ -150,7 +158,7 @@ const MyRequest = () => {
       });
     }
   };
-  
+
   // const handleCancelRequest = (item) => {
   //   Swal.fire({
   //     title: "Are you sure?",
@@ -189,6 +197,17 @@ const MyRequest = () => {
           <span className="text-green-500">{user.displayName}</span>
         </span>
       </h2>
+      <div>
+        <form onChange={handleSearchCaetegory}>
+          <select type="text" className="input input-bordered">
+            <option value={createRequest}>Select</option>
+            <option value="inprogress">Inprogress</option>
+            <option value="done">Done</option>
+            <option value="pending">pending</option>
+            <option value="cancel">Cancel</option>
+          </select>
+        </form>
+      </div>
       {createRequestLength ? (
         <TableContainer className="mt-10" component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -232,7 +251,7 @@ const MyRequest = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {specifyUserRequest
+              {filterDonations
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
                   <TableRow
@@ -258,10 +277,12 @@ const MyRequest = () => {
                             Cancel
                           </button>
                         </div>
+                      ) : row.status === "done" ? (
+                        <button className="btn w-16">Done</button>
+                      ) : row.status === "cancel" ? (
+                        <button className="btn w-16">Cancel</button>
                       ) : (
-                        <button className="btn w-16 btn-primary">
-                          Pending
-                        </button>
+                        <button className="btn w-16">Pending</button>
                       )}
                     </TableCell>
                     <TableCell align="left">{row.hospitalName}</TableCell>
