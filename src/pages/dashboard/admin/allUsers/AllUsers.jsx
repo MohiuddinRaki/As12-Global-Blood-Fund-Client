@@ -18,6 +18,7 @@ const AllUsers = () => {
   const { user } = UseAuth();
   const [userInfo, refetch] = UseUserInfo();
   const axiosSecure = UseAxiosSecure();
+  const [filterDonations, setFilterDonations] = useState(userInfo);
   // const loginUser = userInfo.find(
   //   (loginUser) => loginUser?.email === user?.email
   // );
@@ -25,6 +26,13 @@ const AllUsers = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
+  const handleSearchCaetegory = (event) => {
+    const filteringDonations = filterDonations.filter((donor) =>
+      donor.status.toLowerCase().includes(event.target.value.toLowerCase())
+    );
+    setFilterDonations(filteringDonations);
+    refetch();
+  };
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -230,6 +238,15 @@ const AllUsers = () => {
             </span>
           </span>
         </h2>
+        <div>
+            <form onChange={handleSearchCaetegory}>
+              <select type="text" className="input input-bordered">
+                <option>Select</option>
+                <option value="active">Active</option>
+                <option value="block">Block</option>
+              </select>
+            </form>
+          </div>
         <TableContainer className="mt-10" component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -277,7 +294,7 @@ const AllUsers = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {userInfo
+              {filterDonations
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
                   <TableRow

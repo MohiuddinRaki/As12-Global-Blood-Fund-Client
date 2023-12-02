@@ -113,24 +113,28 @@ const ContentManagement = () => {
     }
   };
   const handleNoAccessDelete = () => {
+    refetch()
     Swal.fire({
       text: "No Access For Delete",
       icon: "warning",
     });
   };
   const handleNoAccessPublish = () => {
+    refetch()
     Swal.fire({
       text: "No Access For Publish",
       icon: "warning",
     });
   };
   const handleNoAccessUnPublish = () => {
+    refetch()
     Swal.fire({
       text: "No Access For UnPublish",
       icon: "warning",
     });
   };
   const handleNoAccessUpadte = () => {
+    refetch()
     Swal.fire({
       text: "No Access For Upadte",
       icon: "warning",

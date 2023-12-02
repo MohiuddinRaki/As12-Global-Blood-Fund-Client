@@ -10,11 +10,12 @@ const DonationBlog = () => {
   );
   const [filterBlogs, setFilterBlogs] = useState(pendingallBlogs);
   const handleSearch = (event) => {
+    // event.preventDefault();
     const filteringBlog = filterBlogs.filter((blog) =>
       blog.title.toLowerCase().includes(event.target.value.toLowerCase())
     );
-    setFilterBlogs(filteringBlog);
     refetch();
+    setFilterBlogs(filteringBlog);
   };
 
   return (

@@ -31,6 +31,8 @@ import UpdateBlog from "../pages/dashboard/commonDashboard/admin_volunteer/updat
 import DashboardProfile from "../pages/dashboard/commonDashboard/dashboardProfile/DashboardProfile";
 import DashboardWelCome from "../pages/dashboard/commonDashboard/dashboardWelcome/DashboardWelcome";
 import ProfileUpdate from "../pages/dashboard/commonDashboard/profileUpdate/ProfileUpdate";
+import AdminRoute from "./AdminRoute";
+import VolunteerRoute from "./VolunteerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -109,7 +111,7 @@ export const router = createBrowserRouter([
         path: "donationUsers/:id",
         element: <ProfileUpdate></ProfileUpdate>,
       },
-      
+
       // For Donor Route:
       {
         path: "create-donation-request",
@@ -137,26 +139,45 @@ export const router = createBrowserRouter([
       // For admin and Volunteer route:
       {
         path: "all-blood-donation-request",
-        element: <AllDonationRequest></AllDonationRequest>
+        element: (
+          <VolunteerRoute>
+            <AllDonationRequest></AllDonationRequest>
+          </VolunteerRoute>
+        ),
       },
       {
         path: "content-management",
-        element: <ContentManagement></ContentManagement>,
+        element: (
+          <VolunteerRoute>
+            <ContentManagement></ContentManagement>
+          </VolunteerRoute>
+        ),
       },
-         {
+      {
         path: "content-management/add-blog",
-        element: <AddBlog></AddBlog>,
+        element: (
+          <VolunteerRoute>
+            <AddBlog></AddBlog>
+          </VolunteerRoute>
+        ),
       },
       {
         path: "content-management/add-blog/:id",
-        element: <UpdateBlog></UpdateBlog>
+        element: (
+          <VolunteerRoute>
+            <UpdateBlog></UpdateBlog>
+          </VolunteerRoute>
+        ),
       },
-
 
       // for admin Route:
       {
         path: "allUsers",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminRoute>
+            <AllUsers></AllUsers>
+          </AdminRoute>
+        ),
       },
       // {
       //   path: "all-blood-donation-request",

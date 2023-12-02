@@ -25,8 +25,8 @@ const DonorSearchPage = () => {
           .toLowerCase()
           .includes(event.target.blodGroup.value.toLowerCase())
     );
-    setFilterDonors(filteringBlogs);
     refetch();
+    setFilterDonors(filteringBlogs);
   };
 
   return (

@@ -32,8 +32,8 @@ const AllDonationRequest = () => {
     const filteringDonations = filterDonations.filter((donor) =>
       donor.status.toLowerCase().includes(event.target.value.toLowerCase())
     );
-    serFilterDonations(filteringDonations);
     refetch();
+    serFilterDonations(filteringDonations);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -176,7 +176,7 @@ const AllDonationRequest = () => {
           <div>
             <form onChange={handleSearchCaetegory}>
               <select type="text" className="input input-bordered">
-                <option value={createRequest}>Select</option>
+                <option>Select</option>
                 <option value="inprogress">Inprogress</option>
                 <option value="done">Done</option>
                 <option value="pending">pending</option>
