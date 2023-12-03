@@ -3,9 +3,11 @@ import UseDonorRequest from "../../../hooks/UseDonorRequest";
 import { useNavigate, useParams } from "react-router-dom";
 import UseAxiosSecure from "../../../hooks/UseAxiosSecure";
 import Swal from "sweetalert2";
+import useAdmin from "../../../hooks/useAdmin";
 
 const DonationDetails = () => {
   const [createRequest, refetch] = UseDonorRequest();
+  const [isAdmin] = useAdmin();
   const axiosSecure = UseAxiosSecure();
   const naviGate = useNavigate();
   const { id } = useParams();
@@ -111,13 +113,17 @@ const DonationDetails = () => {
             </h2>
           </div>
           {/* Open the modal using document.getElementById('ID').showModal() method */}
-          {singlePendingRequest.status === "pending" ? (
+          {singlePendingRequest.status === "pending" && isAdmin ? (
             <button
               className="btn"
               onClick={() => document.getElementById("my_modal_5").showModal()}
             >
               DONATE
             </button>
+          ) : singlePendingRequest.status === "pending" && !isAdmin ? (
+            <span className="mx-auto items-center text-4xl border w-max p-3 text-orange-500 font-medium">
+              This request is Pending and wait for inProgress by admin
+            </span>
           ) : (
             <span className="mx-auto items-center text-4xl border w-max p-3 text-orange-500 font-medium">
               allReady This request is inProgress
