@@ -12,7 +12,7 @@ import PrivacyPolicy from "../pages/shared/privacyPolicy/PrivacyPolicy";
 import ContactUsF from "../pages/shared/contactUsF/ContactUsF";
 import CreateRequest from "../pages/dashboard/donor/createRequest/CreateRequest";
 import MyRequest from "../pages/dashboard/donor/myRequest/MyRequest";
-import DonorContact from "../pages/dashboard/donor/donorContact/DonorContact";
+// import DonorContact from "../pages/dashboard/donor/donorContact/DonorContact";
 // import DonorUpdateForm from "../component/donorUpdate/DonorUpdateForm";
 import DonorRequestUpdate from "../pages/dashboard/donor/donorRequestUpdate/DonorRequestUpdate";
 import AllUsers from "../pages/dashboard/admin/allUsers/AllUsers";
@@ -31,8 +31,8 @@ import UpdateBlog from "../pages/dashboard/commonDashboard/admin_volunteer/updat
 import DashboardProfile from "../pages/dashboard/commonDashboard/dashboardProfile/DashboardProfile";
 import DashboardWelCome from "../pages/dashboard/commonDashboard/dashboardWelcome/DashboardWelcome";
 import ProfileUpdate from "../pages/dashboard/commonDashboard/profileUpdate/ProfileUpdate";
-import AdminRoute from "./AdminRoute";
-import VolunteerRoute from "./VolunteerRoute";
+// import AdminRoute from "./AdminRoute";
+// import VolunteerRoute from "./VolunteerRoute";
 
 export const router = createBrowserRouter([
   {
@@ -101,72 +101,91 @@ export const router = createBrowserRouter([
       // all Common Route:
       {
         index: true,
-        element: <DashboardWelCome></DashboardWelCome>,
+        element: (
+          <PrivateRoute>
+            <DashboardWelCome></DashboardWelCome>,
+          </PrivateRoute>
+        ),
       },
       {
         path: "profile",
-        element: <DashboardProfile></DashboardProfile>,
+        element: (
+          <PrivateRoute>
+            <DashboardProfile></DashboardProfile>
+          </PrivateRoute>
+        ),
       },
       {
         path: "donationUsers/:id",
-        element: <ProfileUpdate></ProfileUpdate>,
+        element: (
+          <PrivateRoute>
+            <ProfileUpdate></ProfileUpdate>
+          </PrivateRoute>
+        ),
       },
 
       // For Donor Route:
       {
         path: "create-donation-request",
-        element: <CreateRequest></CreateRequest>,
+        element: (
+          <PrivateRoute>
+            <CreateRequest></CreateRequest>
+          </PrivateRoute>
+        ),
       },
       {
         path: "myRequest",
-        element: <MyRequest></MyRequest>,
-      },
-      {
-        path: "contact",
-        element: <DonorContact></DonorContact>,
+        element: (
+          <PrivateRoute>
+            <MyRequest></MyRequest>
+          </PrivateRoute>
+        ),
       },
       // {
-      //   path: "donationUsers/:id",
-      //   element: <DonorUpdateForm></DonorUpdateForm>,
-      //   // loader: ({ params }) =>
-      //   //   fetch(`https://b8a12-server-side-mohiuddin-raki.vercel.app/dashboard/donationUsers/${params.id}`),
+      //   path: "contact",
+      //   element: <DonorContact></DonorContact>,
       // },
+      // {
       {
         path: "donatorCreateRequest/:id",
-        element: <DonorRequestUpdate></DonorRequestUpdate>,
+        element: (
+          <PrivateRoute>
+            <DonorRequestUpdate></DonorRequestUpdate>
+          </PrivateRoute>
+        ),
       },
 
       // For admin and Volunteer route:
       {
         path: "all-blood-donation-request",
         element: (
-          <VolunteerRoute>
+          <PrivateRoute>
             <AllDonationRequest></AllDonationRequest>
-          </VolunteerRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "content-management",
         element: (
-          <VolunteerRoute>
+          <PrivateRoute>
             <ContentManagement></ContentManagement>
-          </VolunteerRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "content-management/add-blog",
         element: (
-          <VolunteerRoute>
+          <PrivateRoute>
             <AddBlog></AddBlog>
-          </VolunteerRoute>
+          </PrivateRoute>
         ),
       },
       {
         path: "content-management/add-blog/:id",
         element: (
-          <VolunteerRoute>
+          <PrivateRoute>
             <UpdateBlog></UpdateBlog>
-          </VolunteerRoute>
+          </PrivateRoute>
         ),
       },
 
@@ -174,9 +193,9 @@ export const router = createBrowserRouter([
       {
         path: "allUsers",
         element: (
-          <AdminRoute>
+          <PrivateRoute>
             <AllUsers></AllUsers>
-          </AdminRoute>
+          </PrivateRoute>
         ),
       },
       // {

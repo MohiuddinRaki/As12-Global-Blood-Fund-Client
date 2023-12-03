@@ -49,7 +49,7 @@ const ProfileUpdate = () => {
         blodGroup,
         image,
         role: "donor",
-        status: "active"
+        status: "active",
       };
       const meniRes = await axiosPublic.put(
         `/dashboard/donationUsers/${singleUserInfo?._id}`,
@@ -73,7 +73,8 @@ const ProfileUpdate = () => {
       <Helmet>
         <title>Global Blood Fund | Dashboard | Donor Update</title>
       </Helmet>
-      <div className="card md:w-1/2 w-full max-w-xl shadow-2xl bg-base-100 pb-6">
+      <div>
+         <div className="card md:w-1/2 w-full max-w-xl shadow-2xl bg-base-100 pb-6">
         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
           <div className="flex gap-5">
             <div className="form-control w-1/2">
@@ -189,9 +190,9 @@ const ProfileUpdate = () => {
           </div>
         </form>
       </div>
+      </div>
     </>
   );
 };
 
 export default ProfileUpdate;
-

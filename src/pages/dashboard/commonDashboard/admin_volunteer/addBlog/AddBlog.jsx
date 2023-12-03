@@ -39,7 +39,7 @@ const AddBlog = () => {
         content,
         image,
         status: "draft",
-        email: user?.email
+        email: user?.email,
       };
       console.log(blogsContentInfo);
       axiosSecure.post("/adminAddBlog", blogsContentInfo).then((res) => {

@@ -32,6 +32,7 @@ const CreateRequest = () => {
     const hospitalAddress = data.hospitalAddress;
     const donationDate = data.donationDate;
     const donationTime = data.donationTime;
+    const Photo = user?.photoURL;
     const donatorCreateRequestInfo = {
       requesterName,
       requesterEmail,
@@ -43,7 +44,8 @@ const CreateRequest = () => {
       hospitalAddress,
       donationDate,
       donationTime,
-      status: 'pending'
+      Photo,
+      status: "pending",
     };
 
     console.log(donatorCreateRequestInfo);

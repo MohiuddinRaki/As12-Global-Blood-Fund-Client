@@ -50,22 +50,8 @@ const Footer = () => {
             </li>
           </div>
         </div>
-        {/* <div>
-          <h1 className="text-[#ed1b2f] text-3xl font-bold my-3">FOLLOW US</h1>
-          <div>
-            <li className="text-lg font-medium text-teal-500 lg:text-white">
-              <NavLink to="/register">Register</NavLink>
-            </li>
-            <li className="text-lg font-medium text-teal-500 lg:text-white">
-              <NavLink to="/register">Register</NavLink>
-            </li>
-            <li className="text-lg font-medium text-teal-500 lg:text-white">
-              <NavLink to="/register">Register</NavLink>
-            </li>
-          </div>
-        </div> */}
       </div>
-      <div className="container mx-auto">
+      <div className="container mx-auto px-5 md:px-0">
         <div className="flex">
           <div className="items-center mr-2">
             <img
@@ -82,13 +68,12 @@ const Footer = () => {
             </Link>
           </div>
         </div>
-
         <ul className="menu-horizontal gap-5 my-5">
           <li className="text-lg font-medium text-teal-500 lg:text-[#ed1b2f]">
             <NavLink to="/privacy">privacy policy </NavLink>
           </li>
           <li className="text-lg font-medium text-teal-500 lg:text-[#ed1b2f]">
-            <NavLink to="/contactUsF">contact us</NavLink>
+            contact us
           </li>
         </ul>
       </div>

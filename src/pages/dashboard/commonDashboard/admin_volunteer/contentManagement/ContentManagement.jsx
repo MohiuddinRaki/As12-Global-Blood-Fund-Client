@@ -21,13 +21,13 @@ const ContentManagement = () => {
   const [allBlogs, refetch] = UseAllBlogs();
   const [filterBlogs, setFilterBlogs] = useState(allBlogs);
   const showBlogsCondition = allBlogs.length > 0;
-  
+
   const handleSearchCaetegory = (event) => {
     const filteringBlogs = filterBlogs.filter((blog) =>
       blog.status.toLowerCase().includes(event.target.value.toLowerCase())
     );
     setFilterBlogs(filteringBlogs);
-    refetch()
+    refetch();
   };
 
   const handleDeleteBlog = (blog) => {
@@ -113,28 +113,28 @@ const ContentManagement = () => {
     }
   };
   const handleNoAccessDelete = () => {
-    refetch()
+    refetch();
     Swal.fire({
       text: "No Access For Delete",
       icon: "warning",
     });
   };
   const handleNoAccessPublish = () => {
-    refetch()
+    refetch();
     Swal.fire({
       text: "No Access For Publish",
       icon: "warning",
     });
   };
   const handleNoAccessUnPublish = () => {
-    refetch()
+    refetch();
     Swal.fire({
       text: "No Access For UnPublish",
       icon: "warning",
     });
   };
   const handleNoAccessUpadte = () => {
-    refetch()
+    refetch();
     Swal.fire({
       text: "No Access For Upadte",
       icon: "warning",

@@ -93,7 +93,7 @@ const Register = () => {
           </div> */}
           <div className="card md:w-1/2 w-full max-w-xl shadow-2xl bg-base-100 pb-6">
             <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-              <div className="flex gap-5">
+              <div className="flex flex-col md:flex-row gap-5">
                 <div className="form-control w-1/2">
                   <label className="label">
                     <span className="label-text">Name*</span>
@@ -125,7 +125,7 @@ const Register = () => {
                   )}
                 </div>
               </div>
-              <div className="flex gap-5">
+              <div className="flex flex-col md:flex-row gap-5">
                 <div className="form-control w-1/2">
                   <label className="label">
                     <span className="label-text">District*</span>
@@ -165,8 +165,8 @@ const Register = () => {
                   </select>
                 </div>
               </div>
-              <div className="flex gap-5">
-                <div className="form-control w-1/2">
+              <div className="flex flex-col md:flex-row gap-5">
+                <div className="form-control w-1/3">
                   <label className="label">
                     <span className="label-text">Blood Group*</span>
                   </label>
@@ -188,7 +188,7 @@ const Register = () => {
                     <option value="O-">O-</option>
                   </select>
                 </div>
-                <div className="w-1/2">
+                <div className="w-2/3">
                   <label className="label">
                     <span className="label-text">Photo*</span>
                   </label>
@@ -199,7 +199,7 @@ const Register = () => {
                   />
                 </div>
               </div>
-              <div className="flex gap-5">
+              <div className="flex flex-col md:flex-row gap-5">
                 <div className="form-control w-1/2">
                   <label className="label">
                     <span className="label-text">Password</span>

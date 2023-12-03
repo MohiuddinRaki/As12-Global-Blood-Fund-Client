@@ -117,43 +117,6 @@ const AllUsers = () => {
       });
     }
   };
-  // const handleAdmin = async (donor) => {
-  //   //  send data to the server:
-  //   const name = donor.name;
-  //   const email = donor.email;
-  //   const district = donor.district;
-  //   const upazila = donor.upazila;
-  //   const blodGroup = donor.blodGroup;
-  //   const image = donor.image;
-  //   const role = "admin";
-  //   const status = donor.status;
-  //   const userInfo = {
-  //     name,
-  //     email,
-  //     district,
-  //     upazila,
-  //     blodGroup,
-  //     image,
-  //     role,
-  //     status,
-  //   };
-
-  //   const meniRes = await axiosSecure.put(
-  //     `/dashboard/donationUsers/${donor?._id}`,
-  //     userInfo
-  //   );
-  //   console.log(meniRes.data);
-  //   if (meniRes.data.modifiedCount > 0) {
-  //     refetch();
-  //     Swal.fire({
-  //       position: "top",
-  //       icon: "success",
-  //       title: `now ${donor?.name} is an admin`,
-  //       showConfirmButton: false,
-  //       timer: 1500,
-  //     });
-  //   }
-  // };
 
   const handleAdmin = (user) => {
     axiosSecure.patch(`/dashboard/donationUsers/${user._id}`).then((res) => {
@@ -187,44 +150,6 @@ const AllUsers = () => {
     });
   };
 
-  // const handleVolunteer = async (donor) => {
-  //   //  send data to the server:
-  //   const name = donor.name;
-  //   const email = donor.email;
-  //   const district = donor.district;
-  //   const upazila = donor.upazila;
-  //   const blodGroup = donor.blodGroup;
-  //   const image = donor.image;
-  //   const role = "volunteer";
-  //   const status = donor.status;
-  //   const userInfo = {
-  //     name,
-  //     email,
-  //     district,
-  //     upazila,
-  //     blodGroup,
-  //     image,
-  //     role,
-  //     status,
-  //   };
-
-  //   const meniRes = await axiosSecure.put(
-  //     `/dashboard/donationUsers/${donor?._id}`,
-  //     userInfo
-  //   );
-  //   console.log(meniRes.data);
-  //   if (meniRes.data.modifiedCount > 0) {
-  //     refetch();
-  //     Swal.fire({
-  //       position: "top",
-  //       icon: "success",
-  //       title: `now ${donor?.name} is a Volunteer`,
-  //       showConfirmButton: false,
-  //       timer: 1500,
-  //     });
-  //   }
-  // };
-
   return (
     <>
       <div>
@@ -239,14 +164,14 @@ const AllUsers = () => {
           </span>
         </h2>
         <div>
-            <form onChange={handleSearchCaetegory}>
-              <select type="text" className="input input-bordered">
-                <option>Select</option>
-                <option value="active">Active</option>
-                <option value="block">Block</option>
-              </select>
-            </form>
-          </div>
+          <form onChange={handleSearchCaetegory}>
+            <select type="text" className="input input-bordered">
+              <option>Select</option>
+              <option value="active">Active</option>
+              <option value="block">Block</option>
+            </select>
+          </form>
+        </div>
         <TableContainer className="mt-10" component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -389,24 +314,6 @@ const AllUsers = () => {
                           <FaUser></FaUser>
                         </button>
                       )}
-
-                      {/* {
-                      row?.role === "volunteer" && row?.status === "active" ? (
-                        <span className="text-zinc-500 text-3xl">
-                          volunteer
-                        </span>
-                      ) : row?.status === "block" ? (
-                        <button className="text-green-500 text-3xl">
-                          <FaUser></FaUser>
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => handleVolunteer(row)}
-                          className="text-green-500 text-3xl"
-                        >
-                          <FaUser></FaUser>
-                        </button>
-                      )} */}
                     </TableCell>
                   </TableRow>
                 ))}
