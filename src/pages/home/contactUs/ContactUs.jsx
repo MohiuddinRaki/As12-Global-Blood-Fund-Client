@@ -61,7 +61,7 @@ const ContactUs = () => {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0 }}
         transition={{ duration: 1 }}
-        className="bg-cyan-500"
+        className="bg-slate-500"
         data-aos="fade-right"
       >
         <h1 className="text-5xl text-center font-bold pt-10">
@@ -73,7 +73,7 @@ const ContactUs = () => {
             <span className="text-lime-500">Phone: </span> 01726224244
           </h1>
           <div className="hero">
-            <div className="card md:w-1/2 w-full max-w-xl shadow-2xl bg-gray-400 my-14">
+            <div className="card md:w-1/2 w-full max-w-xl shadow-2xl bg-cyan-500 my-14">
               <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                 <div className="form-control w-full">
                   <label className="label">

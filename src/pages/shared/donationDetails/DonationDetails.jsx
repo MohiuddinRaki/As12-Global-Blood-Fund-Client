@@ -124,6 +124,14 @@ const DonationDetails = () => {
             <span className="mx-auto items-center text-4xl border w-max p-3 text-orange-500 font-medium">
               This request is Pending and wait for inProgress by admin
             </span>
+          ) : singlePendingRequest.status === "done" ? (
+            <span className="mx-auto items-center text-4xl border w-max p-3 text-orange-500 font-medium">
+              allReady This request is Done
+            </span>
+          ) : singlePendingRequest.status === "cancel" ? (
+            <span className="mx-auto items-center text-4xl border w-max p-3 text-orange-500 font-medium">
+              This request has been Cancel
+            </span>
           ) : (
             <span className="mx-auto items-center text-4xl border w-max p-3 text-orange-500 font-medium">
               allReady This request is inProgress
