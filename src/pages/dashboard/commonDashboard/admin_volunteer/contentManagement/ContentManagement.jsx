@@ -19,16 +19,33 @@ const ContentManagement = () => {
   // );
   const axiosSecure = UseAxiosSecure();
   const [allBlogs, refetch] = UseAllBlogs();
-  const [filterBlogs, setFilterBlogs] = useState(allBlogs);
+  // const [filterBlogs, setFilterBlogs] = useState(allBlogs);
   const showBlogsCondition = allBlogs.length > 0;
+  const [filterType, setFilterType] = useState(allBlogs);
+  const [selectedType, setSelectedType] = useState("");
 
   const handleSearchCaetegory = (event) => {
-    const filteringBlogs = filterBlogs.filter((blog) =>
-      blog.status.toLowerCase().includes(event.target.value.toLowerCase())
-    );
-    setFilterBlogs(filteringBlogs);
+    const selectedValue = event.target.value;
+    setSelectedType(selectedValue);
+
+    if (selectedValue === "select") {
+      setFilterType(allBlogs);
+    } else {
+      const filteringCategories = allBlogs.filter((donor) =>
+        donor.status.toLowerCase().includes(event.target.value.toLowerCase())
+      );
+      setFilterType(filteringCategories);
+    }
     refetch();
   };
+
+  // const handleSearchCaetegory = (event) => {
+  //   const filteringBlogs = filterBlogs.filter((blog) =>
+  //     blog.status.toLowerCase().includes(event.target.value.toLowerCase())
+  //   );
+  //   setFilterBlogs(filteringBlogs);
+  //   refetch();
+  // };
 
   const handleDeleteBlog = (blog) => {
     Swal.fire({
@@ -159,16 +176,19 @@ const ContentManagement = () => {
             <span className="text-rose-400">All Blogs</span> Here!
           </h1>
           <div>
-            <form onChange={handleSearchCaetegory}>
-              <select type="text" className="input input-bordered">
-                <option value={allBlogs}>Select</option>
+            <form>
+              <select type="text" className="input input-bordered"
+              onChange={handleSearchCaetegory}
+              value={selectedType}
+              >
+                <option value="select">Select</option>
                 <option value="draft">Draft</option>
                 <option value="publish">Publish</option>
               </select>
             </form>
           </div>
           <div className="mt-10 p-8 md:p-16 lg:p-0 grid grid-cols-1 md:grid-cols-2 gap-12">
-            {filterBlogs.map((blog) => (
+            {filterType.map((blog) => (
               <motion.div
                 key={blog._id}
                 initial={{ opacity: 0, scale: 0 }}

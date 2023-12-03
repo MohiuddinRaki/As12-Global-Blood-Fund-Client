@@ -8,15 +8,33 @@ const DonationBlog = () => {
   const pendingallBlogs = allBlogs.filter(
     (pendingBlogs) => pendingBlogs.status === "publish"
   );
-  const [filterBlogs, setFilterBlogs] = useState(pendingallBlogs);
+
+  const [filterType, setFilterType] = useState(pendingallBlogs);
+  const [selectedType, setSelectedType] = useState("");
+
   const handleSearch = (event) => {
-    // event.preventDefault();
-    const filteringBlog = filterBlogs.filter((blog) =>
-      blog.title.toLowerCase().includes(event.target.value.toLowerCase())
-    );
+    const selectedValue = event.target.value;
+    setSelectedType(selectedValue);
+
+    if (selectedValue === "") {
+      setFilterType(pendingallBlogs);
+    } else {
+      const filteringCategories = pendingallBlogs.filter((donor) =>
+        donor.title.toLowerCase().includes(event.target.value.toLowerCase())
+      );
+      setFilterType(filteringCategories);
+    }
     refetch();
-    setFilterBlogs(filteringBlog);
   };
+  // const [filterBlogs, setFilterBlogs] = useState(pendingallBlogs);
+  // const handleSearch = (event) => {
+  //   // event.preventDefault();
+  //   const filteringBlog = filterBlogs.filter((blog) =>
+  //     blog.title.toLowerCase().includes(event.target.value.toLowerCase())
+  //   );
+  //   refetch();
+  //   setFilterBlogs(filteringBlog);
+  // };
 
   return (
     <>
@@ -32,11 +50,12 @@ const DonationBlog = () => {
                 type="text"
                 placeholder="search by title..."
                 onChange={handleSearch}
+                value={selectedType}
               />
             </div>
           </div>
           <div className="container mx-auto p-8 md:p-16 lg:p-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-20">
-            {filterBlogs.map((blog, idx) => (
+            {filterType.map((blog, idx) => (
               <AllBlog key={idx} blog={blog}></AllBlog>
             ))}
           </div>

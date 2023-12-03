@@ -21,7 +21,52 @@ const MyRequest = () => {
   const specifyUserRequest = createRequest.filter(
     (specifyUser) => specifyUser.requesterEmail === user.email
   );
-  const [filterDonations, serFilterDonations] = useState(specifyUserRequest);
+
+  const [filterType, setFilterType] = useState(specifyUserRequest);
+  const [selectedType, setSelectedType] = useState("");
+
+  const handleSearchCaetegory = (event) => {
+    const selectedValue = event.target.value;
+    setSelectedType(selectedValue);
+
+    if (selectedValue === "select") {
+      setFilterType(specifyUserRequest);
+    } else {
+      const filteringCategories = specifyUserRequest.filter((donor) =>
+        donor.status.toLowerCase().includes(event.target.value.toLowerCase())
+      );
+      setFilterType(filteringCategories);
+    }
+    refetch();
+  };
+
+  // const [filterDonations, serFilterDonations] = useState(specifyUserRequest);
+  // const handleSearchCaetegory = (event) => {
+  //   if (event.target.value === "select") {
+  //     serFilterDonations(specifyUserRequest);
+  //   } else if (event.target.value === "pending") {
+  //     const filteringPending = filterDonations.filter(
+  //       (donor) => donor.status.toLowerCase() === "pending"
+  //     );
+  //     serFilterDonations(filteringPending);
+  //   } else if (event.target.value === "done") {
+  //     const filteringPending = filterDonations.filter(
+  //       (donor) => donor.status.toLowerCase() === "done"
+  //     );
+  //     serFilterDonations(filteringPending);
+  //   } else if (event.target.value === "cancel") {
+  //     const filteringCancel = filterDonations.filter(
+  //       (donor) => donor.status.toLowerCase() === "cancel"
+  //     );
+  //     serFilterDonations(filteringCancel);
+  //   } else {
+  //     const filteringInprogress = filterDonations.filter(
+  //       (donor) => donor.status.toLowerCase() === "inprogress"
+  //     );
+  //     serFilterDonations(filteringInprogress);
+  //   }
+  //   refetch();
+  // };
 
   const createRequestLength = specifyUserRequest.length > 0;
 
@@ -36,14 +81,48 @@ const MyRequest = () => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
-  const handleSearchCaetegory = (event) => {
-    const filteringDonations = filterDonations.filter((donor) =>
-      donor.status.toLowerCase().includes(event.target.value.toLowerCase())
-    );
-    serFilterDonations(filteringDonations);
-    refetch();
-  };
 
+  // const handleSearchCaetegory = (event) => {
+  //   if (event.target.value === "select") {
+  //     serFilterDonations(specifyUserRequest);
+  //   } else if (event.target.value === "pending") {
+  //     const filteringPending = filterDonations.filter(
+  //       (donor) => donor.status.toLowerCase() === "pending"
+  //     );
+  //     serFilterDonations(filteringPending);
+  //   } else if (event.target.value === "done") {
+  //     const filteringPending = filterDonations.filter(
+  //       (donor) => donor.status.toLowerCase() === "done"
+  //     );
+  //     serFilterDonations(filteringPending);
+  //   } else if (event.target.value === "cancel") {
+  //     const filteringCancel = filterDonations.filter(
+  //       (donor) => donor.status.toLowerCase() === "cancel"
+  //     );
+  //     serFilterDonations(filteringCancel);
+  //   } else {
+  //     const filteringInprogress = filterDonations.filter(
+  //       (donor) => donor.status.toLowerCase() === "inprogress"
+  //     );
+  //     serFilterDonations(filteringInprogress);
+  //   }
+  //   refetch();
+  // };
+
+  // const handleSearchCaetegory = (event) => {
+  //   if (event.target.value === "select") {
+  //     serFilterDonations(specifyUserRequest);
+  // } else {
+  //     const filteringCategories = filterDonations.filter((donor) =>
+  //     donor.status.toLowerCase().includes(event.target.value.toLowerCase())
+  //     );
+  //     setSelectedType(filteringCategories);
+  // }
+
+  // const filteringDonations = filterDonations.filter((donor) =>
+  //   donor.status.toLowerCase().includes(event.target.value.toLowerCase())
+  // );
+  // serFilterDonations(filteringDonations);
   const handleDeleteItem = (item) => {
     Swal.fire({
       title: "Are you sure?",
@@ -198,9 +277,14 @@ const MyRequest = () => {
         </span>
       </h2>
       <div>
-        <form onChange={handleSearchCaetegory}>
-          <select type="text" className="input input-bordered">
-            <option value={createRequest}>Select</option>
+        <form>
+          <select
+            className="input input-bordered"
+            type="text"
+            onChange={handleSearchCaetegory}
+            value={selectedType}
+          >
+            <option value="select">Select</option>
             <option value="inprogress">Inprogress</option>
             <option value="done">Done</option>
             <option value="pending">pending</option>
@@ -251,7 +335,7 @@ const MyRequest = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filterDonations
+              {filterType
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
                   <TableRow

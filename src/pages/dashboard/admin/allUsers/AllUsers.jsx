@@ -18,21 +18,38 @@ const AllUsers = () => {
   const { user } = UseAuth();
   const [userInfo, refetch] = UseUserInfo();
   const axiosSecure = UseAxiosSecure();
-  const [filterDonations, setFilterDonations] = useState(userInfo);
+  // const [filterDonations, setFilterDonations] = useState(userInfo);
   // const loginUser = userInfo.find(
   //   (loginUser) => loginUser?.email === user?.email
   // );
+  const [filterType, setFilterType] = useState(userInfo);
+  const [selectedType, setSelectedType] = useState("");
+
+  const handleSearchCaetegory = (event) => {
+    const selectedValue = event.target.value;
+    setSelectedType(selectedValue);
+
+    if (selectedValue === "select") {
+      setFilterType(userInfo);
+    } else {
+      const filteringCategories = userInfo.filter((donor) =>
+        donor.status.toLowerCase().includes(event.target.value.toLowerCase())
+      );
+      setFilterType(filteringCategories);
+    }
+    refetch();
+  };
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const handleSearchCaetegory = (event) => {
-    const filteringDonations = filterDonations.filter((donor) =>
-      donor.status.toLowerCase().includes(event.target.value.toLowerCase())
-    );
-    setFilterDonations(filteringDonations);
-    refetch();
-  };
+  // const handleSearchCaetegory = (event) => {
+  //   const filteringDonations = filterDonations.filter((donor) =>
+  //     donor.status.toLowerCase().includes(event.target.value.toLowerCase())
+  //   );
+  //   setFilterDonations(filteringDonations);
+  //   refetch();
+  // };
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -164,9 +181,14 @@ const AllUsers = () => {
           </span>
         </h2>
         <div>
-          <form onChange={handleSearchCaetegory}>
-            <select type="text" className="input input-bordered">
-              <option>Select</option>
+          <form>
+            <select
+              type="text"
+              className="input input-bordered"
+              onChange={handleSearchCaetegory}
+              value={selectedType}
+            >
+              <option value="select">Select</option>
               <option value="active">Active</option>
               <option value="block">Block</option>
             </select>
@@ -219,7 +241,7 @@ const AllUsers = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {filterDonations
+              {filterType
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
                   <TableRow

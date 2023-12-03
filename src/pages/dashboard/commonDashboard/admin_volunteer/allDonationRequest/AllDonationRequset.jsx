@@ -23,18 +23,35 @@ const AllDonationRequest = () => {
   const axiosSecure = UseAxiosSecure();
   const createRequestLength = createRequest.length > 0;
   const { user } = UseAuth();
-  const [filterDonations, serFilterDonations] = useState(createRequest);
+
+  const [filterType, setFilterType] = useState(createRequest);
+  const [selectedType, setSelectedType] = useState("");
+
+  const handleSearchCaetegory = (event) => {
+    const selectedValue = event.target.value;
+    setSelectedType(selectedValue);
+
+    if (selectedValue === "select") {
+      setFilterType(createRequest);
+    } else {
+      const filteringCategories = createRequest.filter((donor) =>
+        donor.status.toLowerCase().includes(event.target.value.toLowerCase())
+      );
+      setFilterType(filteringCategories);
+    }
+    refetch();
+  };
 
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
-  const handleSearchCaetegory = (event) => {
-    const filteringDonations = filterDonations.filter((donor) =>
-      donor.status.toLowerCase().includes(event.target.value.toLowerCase())
-    );
-    refetch();
-    serFilterDonations(filteringDonations);
-  };
+  // const handleSearchCaetegory = (event) => {
+  //   const filteringDonations = filterDonations.filter((donor) =>
+  //     donor.status.toLowerCase().includes(event.target.value.toLowerCase())
+  //   );
+  //   refetch();
+  //   serFilterDonations(filteringDonations);
+  // };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -174,9 +191,14 @@ const AllDonationRequest = () => {
             </span>
           </h2>
           <div>
-            <form onChange={handleSearchCaetegory}>
-              <select type="text" className="input input-bordered">
-                <option>Select</option>
+            <form>
+              <select
+                type="text"
+                className="input input-bordered"
+                onChange={handleSearchCaetegory}
+                value={selectedType}
+              >
+                <option value="select">Select</option>
                 <option value="inprogress">Inprogress</option>
                 <option value="done">Done</option>
                 <option value="pending">pending</option>
@@ -222,7 +244,7 @@ const AllDonationRequest = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filterDonations
+                {filterType
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row) => (
                     <TableRow
