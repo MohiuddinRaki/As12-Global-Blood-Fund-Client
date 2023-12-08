@@ -33,33 +33,6 @@ const DonationRequest = () => {
     setPage(0);
   };
 
-  //   const handleDeleteItem = (item) => {
-  //     Swal.fire({
-  //       title: "Are you sure?",
-  //       text: "You won't be able to revert this!",
-  //       icon: "warning",
-  //       showCancelButton: true,
-  //       confirmButtonColor: "#3085d6",
-  //       cancelButtonColor: "#d33",
-  //       confirmButtonText: "Yes, delete it!",
-  //     }).then(async (result) => {
-  //       if (result.isConfirmed) {
-  //         const res = await axiosSecure.delete(
-  //           `/donatorCreateRequest/${item._id}`
-  //         );
-  //         if (res.data.deletedCount > 0) {
-  //           refetch();
-  //           Swal.fire({
-  //             title: "Deleted!",
-  //             text: "Your request has been deleted.",
-  //             icon: "success",
-  //           });
-  //         }
-  //         console.log(res.data);
-  //       }
-  //     });
-  //   };
-
   return (
     <>
       <Helmet>
@@ -148,22 +121,3 @@ const DonationRequest = () => {
 
 export default DonationRequest;
 
-// import { Helmet } from "react-helmet-async";
-// import UseDonorRequest from "../../../hooks/UseDonorRequest";
-
-// const DonationRequest = () => {
-//   const [createRequest] = UseDonorRequest();
-//   const pendingCreateRequest = createRequest.filter(
-//     (pendingRequest) => pendingRequest.status === "pending"
-//   );
-//   return (
-//     <div className="pt-40">
-//       <Helmet>
-//         <title>Global Blood Fund || Donation Request</title>
-//       </Helmet>
-
-//     </div>
-//   );
-// };
-
-// export default DonationRequest;

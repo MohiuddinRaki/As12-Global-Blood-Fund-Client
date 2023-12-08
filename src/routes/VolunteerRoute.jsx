@@ -14,7 +14,7 @@ const VolunteerRoute = ({ children }) => {
     return <progress className="progress w-56"></progress>;
   }
 
-  if ((user && isVolunteer) || isAdmin) {
+  if (user && (isVolunteer || isAdmin)) {
     return children;
   }
 

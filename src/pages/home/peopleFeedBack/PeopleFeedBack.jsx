@@ -95,7 +95,7 @@ const PeopleFeedBack = () => {
     });
   };
   return (
-    <div className="bg-zinc-600 pb-16 pt-10">
+    <div className="pb-16 pt-10">
       <div className="container mx-auto">
         <h1 className="text-2xl md:text-5xl font-bold text-lime-500 text-center mb-10">
           Peoples Feedback
@@ -126,7 +126,7 @@ const PeopleFeedBack = () => {
                     {feedBack.userName}
                   </h2>
                 </div>
-                {isAdmin && user?.email === feedBack.userEmail ? (
+                {isAdmin || user?.email === feedBack?.userEmail ? (
                   <button
                     onClick={() => handleDeleteBlog(feedBack)}
                     className="btn btn-warning"

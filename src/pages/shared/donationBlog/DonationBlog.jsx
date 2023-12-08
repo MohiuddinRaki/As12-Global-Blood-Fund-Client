@@ -26,15 +26,6 @@ const DonationBlog = () => {
     }
     refetch();
   };
-  // const [filterBlogs, setFilterBlogs] = useState(pendingallBlogs);
-  // const handleSearch = (event) => {
-  //   // event.preventDefault();
-  //   const filteringBlog = filterBlogs.filter((blog) =>
-  //     blog.title.toLowerCase().includes(event.target.value.toLowerCase())
-  //   );
-  //   refetch();
-  //   setFilterBlogs(filteringBlog);
-  // };
 
   return (
     <>

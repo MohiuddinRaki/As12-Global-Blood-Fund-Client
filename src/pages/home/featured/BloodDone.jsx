@@ -18,10 +18,10 @@ const BloodDone = ({ blog }) => {
         </figure>
         <div className="card-body">
           <div>
-            <h2 className="text-4xl font-bold text-orange-500">
-              <span className="text-teal-500 ">Name:</span> {requesterName}
+            <h2 className="text-2xl font-medium text-white">
+              <span className="text-red-500">Requester Name:</span> {requesterName}
             </h2>
-            <h2 className="text-xl font-medium text-white">{recipientName}</h2>
+            <h2 className="text-2xl font-medium text-white"><span className="text-red-500 ">RecipientName: </span> {recipientName}</h2>
           </div>
         </div>
       </motion.div>

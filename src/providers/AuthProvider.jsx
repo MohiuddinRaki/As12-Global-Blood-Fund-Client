@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unSubsCribe();
     };
-  }, []);
+  }, [axiosPublic]);
 
   const AuthInfo = {
     user,

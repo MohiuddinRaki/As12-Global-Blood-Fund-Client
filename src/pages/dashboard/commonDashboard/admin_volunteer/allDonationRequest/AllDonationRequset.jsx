@@ -89,49 +89,49 @@ const AllDonationRequest = () => {
     });
   };
 
-  // const handleDoneRequest = async (data) => {
-  //   //  send data to the server:
-  //   const requesterName = data.requesterName;
-  //   const requesterEmail = data.requesterEmail;
-  //   const recipientName = data.recipientName;
-  //   const requestMessage = data.requestMessage;
-  //   const recipientDistrict = data.recipientDistrict;
-  //   const recipientUpazila = data.recipientUpazila;
-  //   const hospitalName = data.hospitalName;
-  //   const hospitalAddress = data.hospitalAddress;
-  //   const donationDate = data.donationDate;
-  //   const donationTime = data.donationTime;
-  //   const status = "done";
-  //   const updateDonorRequestInfo = {
-  //     requesterName,
-  //     requesterEmail,
-  //     recipientName,
-  //     requestMessage,
-  //     recipientDistrict,
-  //     recipientUpazila,
-  //     hospitalName,
-  //     hospitalAddress,
-  //     donationDate,
-  //     donationTime,
-  //     status,
-  //   };
+  const handleDoneRequest = async (data) => {
+    //  send data to the server:
+    const requesterName = data.requesterName;
+    const requesterEmail = data.requesterEmail;
+    const recipientName = data.recipientName;
+    const requestMessage = data.requestMessage;
+    const recipientDistrict = data.recipientDistrict;
+    const recipientUpazila = data.recipientUpazila;
+    const hospitalName = data.hospitalName;
+    const hospitalAddress = data.hospitalAddress;
+    const donationDate = data.donationDate;
+    const donationTime = data.donationTime;
+    const status = "done";
+    const updateDonorRequestInfo = {
+      requesterName,
+      requesterEmail,
+      recipientName,
+      requestMessage,
+      recipientDistrict,
+      recipientUpazila,
+      hospitalName,
+      hospitalAddress,
+      donationDate,
+      donationTime,
+      status,
+    };
 
-  //   const meniRes = await axiosSecure.put(
-  //     `/dashboard/donatorCreateRequest/${data?._id}`,
-  //     updateDonorRequestInfo
-  //   );
-  //   console.log(meniRes.data);
-  //   if (meniRes.data.modifiedCount > 0) {
-  //     refetch();
-  //     Swal.fire({
-  //       position: "top",
-  //       icon: "success",
-  //       title: "status Updated to done successfully",
-  //       showConfirmButton: false,
-  //       timer: 1500,
-  //     });
-  //   }
-  // };
+    const meniRes = await axiosSecure.put(
+      `/dashboard/donatorCreateRequest/${data?._id}`,
+      updateDonorRequestInfo
+    );
+    console.log(meniRes.data);
+    if (meniRes.data.modifiedCount > 0) {
+      refetch();
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "status Updated to done successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
 
   const handleCancelRequest = async (data) => {
     //  send data to the server:
@@ -257,12 +257,12 @@ const AllDonationRequest = () => {
                       <TableCell align="left">
                         {row.status === "inprogress" ? (
                           <div className="flex flex-col gap-2">
-                            {/* <button
+                            <button
                               className="btn w-16 btn-success"
                               onClick={() => handleDoneRequest(row)}
                             >
                               Done
-                            </button> */}
+                            </button>
                             <button
                               className="btn w-16 btn-accent"
                               onClick={() => handleCancelRequest(row)}
