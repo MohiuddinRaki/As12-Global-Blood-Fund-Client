@@ -73,7 +73,10 @@ const ContactUs = () => {
           </h1>
           <div className="hero">
             <div className="card md:w-1/2 w-full max-w-xl shadow-2xl bg-cyan-500 my-14">
-              <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="card-body"
+              >
                 <div className="form-control w-full">
                   <label className="label">
                     <span className="label-text">Name*</span>
